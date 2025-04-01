@@ -27,4 +27,13 @@ public class Title : MonoBehaviour
         SceneManager.LoadScene("Title");
         Debug.Log("dddddd");
     }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); 
+#endif
+    }
 }
