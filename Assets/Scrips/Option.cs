@@ -1,47 +1,49 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class Option : MonoBehaviour
 {
-    public GameObject optionsPanel; // ¼³Á¤ ÆĞ³Î
-    public AudioSource bgmSource; // ¹è°æ À½¾Ç
-    public AudioSource[] sfxSources; // È¿°úÀ½µé
-    public Slider bgmSlider;
-    public Slider sfxSlider;
+    public GameObject options;
+    public AudioSource bgmSource;
+    public AudioSource[] sfxSources;
+    public Slider bgm;   // BGM ìŠ¬ë¼ì´ë”
+    public Slider sfx;   // SFX ìŠ¬ë¼ì´ë”
     public Toggle sfxToggle;
 
     void Start()
     {
-        // ÃÊ±âÈ­: ½½¶óÀÌ´õ °ª Àû¿ë
-        if (bgmSlider != null)
+        // ğŸµ BGM ìŠ¬ë¼ì´ë” ê°’ ì´ˆê¸°í™”
+        if (bgm != null)
         {
-            bgmSlider.value = bgmSource.volume;
-            bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+            bgm.value = bgmSource.volume;  // BGM ìŠ¬ë¼ì´ë” ê°’ ì„¤ì •
+            bgm.onValueChanged.AddListener(SetBGMVolume);
         }
 
-        if (sfxSlider != null)
+        // ğŸ”Š SFX ìŠ¬ë¼ì´ë” ê°’ ì´ˆê¸°í™”
+        if (sfx != null && sfxSources.Length > 0)
         {
-            sfxSlider.value = sfxSources[0].volume; // Ã¹ ¹øÂ° È¿°úÀ½ ±âÁØ
-            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+            sfx.value = sfxSources[0].volume; // ì²« ë²ˆì§¸ íš¨ê³¼ìŒ ê¸°ì¤€
+            sfx.onValueChanged.AddListener(SetSFXVolume);
         }
 
-        if (sfxToggle != null)
+        // ğŸšï¸ íš¨ê³¼ìŒ ON/OFF í† ê¸€ ì´ˆê¸°í™”
+        if (sfxToggle != null && sfxSources.Length > 0)
         {
-            sfxToggle.isOn = sfxSources[0].mute == false;
+            sfxToggle.isOn = !sfxSources[0].mute; // ìŒì†Œê±° ìƒíƒœ ë°˜ì˜
             sfxToggle.onValueChanged.AddListener(ToggleSFX);
         }
 
-        optionsPanel.SetActive(false); // ½ÃÀÛÇÒ ¶§ ¿É¼Ç Ã¢ ´İ±â
+        options.SetActive(false); // ì˜µì…˜ ì°½ ê¸°ë³¸ ë¹„í™œì„±í™”
     }
 
     public void OpenOptions()
     {
-        optionsPanel.SetActive(true);
+        options.SetActive(true);
     }
 
     public void CloseOptions()
     {
-        optionsPanel.SetActive(false);
+        options.SetActive(false);
     }
 
     public void SetBGMVolume(float volume)

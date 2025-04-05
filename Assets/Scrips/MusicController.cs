@@ -3,6 +3,9 @@ using UnityEngine;
 public class MusicController : MonoBehaviour
 {
     public AudioSource audioSource;
+
+    public AudioSource sfxSource;
+
     public void ToggleMusic()
     {
         if (audioSource.isPlaying)
@@ -13,5 +16,10 @@ public class MusicController : MonoBehaviour
         {
             audioSource.Play();  
         }
+    }
+
+    public void ToggleSFX(bool isOn)
+    {
+        sfxSource.mute = !isOn;
     }
 }
