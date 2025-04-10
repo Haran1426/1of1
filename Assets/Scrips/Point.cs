@@ -76,7 +76,7 @@ public class Point : MonoBehaviour
         }
 
         spawnedObjects.Add(spawnedObject);
-        Debug.Log($"✅ 오브젝트 생성됨! 현재 개수: {spawnedObjects.Count}");
+        Debug.Log($"현재 개수: {spawnedObjects.Count}");
     }
 
 
@@ -85,7 +85,6 @@ public class Point : MonoBehaviour
         if (spawnedObjects.Contains(obj))
         {
             spawnedObjects.Remove(obj);
-            Debug.Log($"✅ {obj.name} 삭제됨! 현재 개수: {spawnedObjects.Count}");
         }
     }
 }
