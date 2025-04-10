@@ -27,7 +27,7 @@ public class Point : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f); // 1초 대기 후 다시 실행
         }
-    }
+    }//22222
 
     void SpawnObject()
     {
