@@ -43,6 +43,18 @@ public class Point : MonoBehaviour
         Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
         GameObject spawnedObject = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
 
+        // 🔴🟢🔵 랜덤 색상 설정
+        Color[] colors = { Color.red, Color.green, Color.blue };
+        Color randomColor = colors[Random.Range(0, colors.Length)];
+
+        SpriteRenderer sr = spawnedObject.GetComponent<SpriteRenderer>();
+        if (sr == null)
+        {
+            sr = spawnedObject.AddComponent<SpriteRenderer>();
+        }
+        sr.color = randomColor;
+
+        // Rigidbody2D 추가
         if (spawnedObject.GetComponent<Rigidbody2D>() == null)
         {
             Rigidbody2D rb = spawnedObject.AddComponent<Rigidbody2D>();
@@ -50,12 +62,14 @@ public class Point : MonoBehaviour
             rb.velocity = Vector2.left * moveSpeed;
         }
 
+        // Collider 추가
         if (spawnedObject.GetComponent<BoxCollider2D>() == null)
         {
             BoxCollider2D collider = spawnedObject.AddComponent<BoxCollider2D>();
             collider.isTrigger = true;
         }
 
+        // DestroyOnCutLine 스크립트 추가
         if (spawnedObject.GetComponent<DestroyOnCutLine>() == null)
         {
             spawnedObject.AddComponent<DestroyOnCutLine>();
@@ -64,6 +78,7 @@ public class Point : MonoBehaviour
         spawnedObjects.Add(spawnedObject);
         Debug.Log($"✅ 오브젝트 생성됨! 현재 개수: {spawnedObjects.Count}");
     }
+
 
     public void RemoveFromList(GameObject obj)
     {
