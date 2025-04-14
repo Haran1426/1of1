@@ -10,7 +10,7 @@ public class DestroyOnCutLine : MonoBehaviour
 
         if (other.gameObject.CompareTag("CutLine")) // 태그 비교 방식 변경
         {
-            Point pointScript = FindObjectOfType<Point>();
+            NoteSpawner pointScript = FindObjectOfType<NoteSpawner>();
             if (pointScript != null)
             {
                 pointScript.RemoveFromList(gameObject);
