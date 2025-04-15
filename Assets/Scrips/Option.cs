@@ -67,5 +67,3 @@ public class Option : MonoBehaviour
         }
     }
 }
-//ddddddddddddddddddddddddddddddd
-///gyf
