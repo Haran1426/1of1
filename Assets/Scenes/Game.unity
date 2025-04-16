@@ -1155,6 +1155,7 @@ MonoBehaviour:
   spawnX: 6
   moveSpeed: 7
   maxObjects: 5
+  timingManager: {fileID: 0}
 --- !u!4 &1469891194
 Transform:
   m_ObjectHideFlags: 0
@@ -1552,7 +1553,7 @@ GameObject:
   - component: {fileID: 1979671024}
   - component: {fileID: 1979671023}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
