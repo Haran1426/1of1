@@ -5,16 +5,25 @@ using UnityEngine;
 public class NoteSpawner : MonoBehaviour
 
 {
+    void Awake()
+    {
+        // 이 컴포넌트가 "NoteSpawner" 태그가 붙은 오브젝트에만 살아 있도록
+        if (!CompareTag("NoteSpawner"))
+            enabled = false;
+    }
+
     void Start()
     {
         if (timingManager == null)
-        {
+            timingManager = FindObjectOfType<TimingManager>();
+
+        if (timingManager == null)
             Debug.LogError("TimingManager가 연결되지 않았습니다!");
-        }
     }
 
+
     [Header("리듬 설정")]
-    public int bpm = 120;
+    public int bpm = 100;
     private double currentTime = 0d;
 
     [Header("노트 설정")]
@@ -33,24 +42,44 @@ public class NoteSpawner : MonoBehaviour
 
     void Update()
     {
+        // (1) 파괴된 노트(== null) 자동 제거
+        spawnedObjects.RemoveAll(note => note == null);
+
+        // (2) 시간 누적
         currentTime += Time.deltaTime;
 
-        if (currentTime >= 60d / bpm && spawnedObjects.Count < maxObjects)
+        // (3) 노트가 없을 때만 BPM 주기에 맞춰 스폰
+        if (currentTime >= 60d / bpm && spawnedObjects.Count == 0)
         {
+            Debug.Log($"노트 생성! bpm={bpm}, 지난시간={currentTime:F2}");
             SpawnNote();
             currentTime -= 60d / bpm;
         }
 
-        // 테스트 키 입력
+        // (4) 키 입력 테스트 (Space 누르면 즉시 제거)
         if (Input.GetKeyDown(KeyCode.Space) && spawnedObjects.Count > 0)
         {
-            GameObject note = spawnedObjects[0];
+            var note = spawnedObjects[0];
+            Debug.Log("RemoveFromList 호출 전 Count=" + spawnedObjects.Count);
             string result = timingManager.CheckTiming(note);
             Debug.Log("판정 결과: " + result);
             RemoveFromList(note);
             Destroy(note);
+            Debug.Log("RemoveFromList 호출 후 Count=" + spawnedObjects.Count);
         }
     }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("CutLine"))
+        {
+            FindObjectOfType<NoteSpawner>().RemoveFromList(gameObject);
+            Destroy(gameObject);
+            Debug.Log("DestroyOnCutLine 에서 RemoveFromList & Destroy 호출");
+        }
+    }
+
 
     void SpawnNote()
     {
