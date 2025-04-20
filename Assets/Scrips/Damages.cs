@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class Damages : MonoBehaviour
 {
-    [SerializeField]
-    private float Damage;
-
-    [SerializeField]
-    private float Speed;
-    
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Player"))
+        {
+            PlayerHP player = other.GetComponent<PlayerHP>();
+            if (player != null)
+            {
+                player.TakeDamage(10); // 데미지 10
+            }
 
-    }
-    
-    void Update()
-    {
-        
-    }
-
-    void Tuch()
-    {
-        
+            // 자기 자신 제거
+            Destroy(gameObject);
+        }
     }
 }

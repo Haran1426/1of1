@@ -3,16 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
-
 {
-    void Start()
-    {
-        if (timingManager == null)
-        {
-            Debug.LogError("TimingManager가 연결되지 않았습니다!");
-        }
-    }
-
     [Header("리듬 설정")]
     public int bpm = 120;
     private double currentTime = 0d;
@@ -22,14 +13,11 @@ public class NoteSpawner : MonoBehaviour
     public float spawnX = 6f;
     public float moveSpeed = 7f;
     public int maxObjects = 5;
-    
-    [Header("참조")]
-    public TimingManager timingManager;
 
     private List<GameObject> spawnedObjects = new List<GameObject>();
-
-    // 노트 생성 위치 (한 개만 랜덤하게 선택될 예정)
     private float[] yPositions = { 1.5f, 0f, -1.5f };
+
+
 
     void Update()
     {
@@ -40,32 +28,52 @@ public class NoteSpawner : MonoBehaviour
             SpawnNote();
             currentTime -= 60d / bpm;
         }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("충돌한 오브젝트: " + other.gameObject.name);
 
-        // 테스트 키 입력
-        if (Input.GetKeyDown(KeyCode.Space) && spawnedObjects.Count > 0)
+        if (other.CompareTag("CutLine"))
         {
-            GameObject note = spawnedObjects[0];
-            string result = timingManager.CheckTiming(note);
-            Debug.Log("판정 결과: " + result);
-            RemoveFromList(note);
-            Destroy(note);
+            Debug.Log("CutLine과 충돌함, 노트 삭제!");
+            Destroy(gameObject);
         }
     }
 
     void SpawnNote()
     {
-        // 하나의 Y 좌표만 무작위로 선택
         float randomY = yPositions[Random.Range(0, yPositions.Length)];
         Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
         GameObject note = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
 
-        // 랜덤 색상
-        Color[] colors = { Color.red, Color.green, Color.blue };
-        Color randomColor = colors[Random.Range(0, colors.Length)];
+        Color[] colors = {
+    Color.red,       // R
+    Color.green,     // G
+    Color.blue,      // B
+    Color.yellow,    // R + G
+    Color.magenta,   // R + B
+    Color.cyan,      // G + B
+    Color.white      // R + G + B
+};
 
-        SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
-        if (sr == null) sr = note.AddComponent<SpriteRenderer>();
-        sr.color = randomColor;
+        NoteColor.NoteType[] types = {
+    NoteColor.NoteType.Red,
+    NoteColor.NoteType.Green,
+    NoteColor.NoteType.Blue,
+    NoteColor.NoteType.Yellow,
+    NoteColor.NoteType.Magenta,
+    NoteColor.NoteType.Cyan,
+    NoteColor.NoteType.White
+};
+
+        int rand = Random.Range(0, colors.Length);
+        Color randomColor = colors[rand];
+        note.GetComponent<SpriteRenderer>().color = randomColor;
+
+        // NoteColor 스크립트에 색상 정보 전달
+        NoteColor noteColor = note.AddComponent<NoteColor>();
+        noteColor.noteType = types[rand];
+
 
         // Rigidbody2D 설정
         Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
@@ -83,14 +91,13 @@ public class NoteSpawner : MonoBehaviour
             collider.isTrigger = true;
         }
 
-        // 자동 제거 스크립트
-        if (note.GetComponent<DestroyOnCutLine>() == null)
+        // 데미지 처리 스크립트 추가
+        if (note.GetComponent<Damages>() == null)
         {
-            note.AddComponent<DestroyOnCutLine>();
+            note.AddComponent<Damages>();
         }
 
         spawnedObjects.Add(note);
-        timingManager.AddNote(note);
     }
 
     public void RemoveFromList(GameObject note)
@@ -99,7 +106,5 @@ public class NoteSpawner : MonoBehaviour
         {
             spawnedObjects.Remove(note);
         }
-
-        timingManager.RemoveNote(note);
     }
 }
