@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyOnCutLine : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        void OnTriggerEnter2D(Collider2D other)
+
+        Debug.Log($"충돌 감지: {other.gameObject.name}");
+
+        if (other.CompareTag("CutLine"))
         {
-            Debug.Log("CutLine에서 충돌 감지: " + other.gameObject.name);
+            Debug.Log("🔴 CutLine과 충돌!");
+
+            Destroy(gameObject);
         }
-
-
-
-
-
     }
 }

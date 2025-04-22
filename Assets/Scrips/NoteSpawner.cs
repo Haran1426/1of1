@@ -18,17 +18,25 @@ public class NoteSpawner : MonoBehaviour
     private float[] yPositions = { 1.5f, 0f, -1.5f };
 
 
+    void Start()
+    {
+        if (objectPrefab == null)
+        {
+            Debug.LogError("objectPrefab이 연결되지 않았습니다!");
+        }
+    }
 
     void Update()
     {
         currentTime += Time.deltaTime;
 
-        if (currentTime >= 60d / bpm && spawnedObjects.Count < maxObjects)
+        if (currentTime >= 60d / bpm)
         {
             SpawnNote();
             currentTime -= 60d / bpm;
         }
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("충돌한 오브젝트: " + other.gameObject.name);
@@ -96,7 +104,10 @@ public class NoteSpawner : MonoBehaviour
         {
             note.AddComponent<Damages>();
         }
-
+        if (note.GetComponent<DestroyOnCutLine>() == null)
+        {
+            note.AddComponent<DestroyOnCutLine>();
+        }
         spawnedObjects.Add(note);
     }
 
