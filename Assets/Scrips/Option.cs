@@ -66,4 +66,5 @@ public class Option : MonoBehaviour
             sfx.mute = !isOn;
         }
     }
+
 }
