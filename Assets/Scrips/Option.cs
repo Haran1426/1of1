@@ -6,20 +6,20 @@ public class Option : MonoBehaviour
     public GameObject options;
     public AudioSource bgmSource;
     public AudioSource[] sfxSources;
-    public Slider bgm;   // BGM 슬라이더
-    public Slider sfx;   // SFX 슬라이더
+    public Slider bgm;   
+    public Slider sfx;  
     public Toggle sfxToggle;
 
     void Start()
     {
-        // 🎵 BGM 슬라이더 값 초기화
+        // BGM 슬라이더 값 초기화
         if (bgm != null)
         {
             bgm.value = bgmSource.volume;  // BGM 슬라이더 값 설정
             bgm.onValueChanged.AddListener(SetBGMVolume);
         }
 
-        // 🔊 SFX 슬라이더 값 초기화
+        // SFX 슬라이더 값 초기화
         if (sfx != null && sfxSources.Length > 0)
         {
             sfx.value = sfxSources[0].volume; // 첫 번째 효과음 기준

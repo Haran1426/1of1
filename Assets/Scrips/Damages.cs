@@ -11,10 +11,10 @@ public class Damages : MonoBehaviour
             PlayerHP player = other.GetComponent<PlayerHP>();
             if (player != null)
             {
-                player.TakeDamage(10); // 데미지 10
+                player.TakeDamage(10); 
             }
 
-            // 자기 자신 제거
+            //자기 자신 제거
             Destroy(gameObject);
         }
     }
