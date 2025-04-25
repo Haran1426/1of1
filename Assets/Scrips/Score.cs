@@ -10,6 +10,8 @@ public class Score : MonoBehaviour
     [Header("점수 UI")]
     public TextMeshProUGUI scoreText;
 
+    private Coroutine scoreEffectCoroutine;
+
     void Awake()
     {
         if (Instance == null)
@@ -25,22 +27,32 @@ public class Score : MonoBehaviour
 
     public void AddScore(int amount)
     {
+        bool isPositive = amount > 0;
         score += amount;
-        Debug.Log("점수: " + score);
         UpdateScoreUI();
-        StartCoroutine(AnimateScoreUI()); // 💥 점수 애니메이션 실행
+
+        Debug.Log($"점수: {score}");
+
+        // 점수 증가일 때만 애니메이션 실행 (중복 방지)
+        if (isPositive)
+        {
+            if (scoreEffectCoroutine != null)
+                StopCoroutine(scoreEffectCoroutine);
+
+            scoreEffectCoroutine = StartCoroutine(AnimateScoreUI());
+        }
     }
 
     public void OnHitCutLine()
     {
         AddScore(-Random.Range(100, 201));
-        Debug.Log("깎임");
+        Debug.Log("❌ 점수 감소");
     }
 
     public void OnHitHitBox()
     {
         AddScore(Random.Range(300, 501));
-        Debug.Log("상승");
+        Debug.Log("✅ 점수 증가");
     }
 
     private void UpdateScoreUI()
@@ -49,28 +61,34 @@ public class Score : MonoBehaviour
             scoreText.text = score.ToString();
     }
 
-    // 💥 점수 텍스트 크기 애니메이션 효과
     private IEnumerator AnimateScoreUI()
     {
-        Vector3 originalScale = scoreText.transform.localScale;
+        Vector3 originalScale = Vector3.one;
         Vector3 targetScale = originalScale * 1.05f;
 
+        scoreText.rectTransform.localScale = originalScale; // 시작 시 스케일 리셋
+
         float time = 0f;
-        while (time < 0.2f)
+        float duration = 0.07f;
+
+        while (time < duration)
         {
-            scoreText.transform.localScale = Vector3.Lerp(originalScale, targetScale, time / 0.15f);
+            scoreText.rectTransform.localScale = Vector3.Lerp(originalScale, targetScale, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
+        scoreText.rectTransform.localScale = targetScale;
 
         time = 0f;
-        while (time < 0.2f)
+        while (time < duration)
         {
-            scoreText.transform.localScale = Vector3.Lerp(targetScale, originalScale, time / 0.2f);
+            scoreText.rectTransform.localScale = Vector3.Lerp(targetScale, originalScale, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
-
-        scoreText.transform.localScale = originalScale;
+        scoreText.rectTransform.localScale = originalScale;
     }
+
+
+
 }
