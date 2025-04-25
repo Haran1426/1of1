@@ -17,7 +17,6 @@ public class NoteSpawner : MonoBehaviour
     private List<GameObject> spawnedObjects = new List<GameObject>();
     private float[] yPositions = { 1.5f, 0f, -1.5f };
 
-
     void Start()
     {
         if (objectPrefab == null)
@@ -37,51 +36,38 @@ public class NoteSpawner : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("충돌한 오브젝트: " + other.gameObject.name);
-
-        if (other.CompareTag("CutLine"))
-        {
-            Debug.Log("CutLine과 충돌함, 노트 삭제!");
-            Destroy(gameObject);
-        }
-    }
-
     void SpawnNote()
     {
         float randomY = yPositions[Random.Range(0, yPositions.Length)];
         Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
         GameObject note = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
 
+        // 색상 및 NoteType 설정
         Color[] colors = {
-    Color.red,       // R
-    Color.green,     // G
-    Color.blue,      // B
-    Color.yellow,    // R + G
-    Color.magenta,   // R + B
-    Color.cyan,      // G + B
-    Color.white      // R + G + B
-};
+            Color.red,
+            Color.green,
+            Color.blue,
+            Color.yellow,
+            Color.magenta,
+            Color.cyan,
+            Color.white
+        };
 
         NoteColor.NoteType[] types = {
-    NoteColor.NoteType.Red,
-    NoteColor.NoteType.Green,
-    NoteColor.NoteType.Blue,
-    NoteColor.NoteType.Yellow,
-    NoteColor.NoteType.Magenta,
-    NoteColor.NoteType.Cyan,
-    NoteColor.NoteType.White
-};
+            NoteColor.NoteType.Red,
+            NoteColor.NoteType.Green,
+            NoteColor.NoteType.Blue,
+            NoteColor.NoteType.Yellow,
+            NoteColor.NoteType.Magenta,
+            NoteColor.NoteType.Cyan,
+            NoteColor.NoteType.White
+        };
 
         int rand = Random.Range(0, colors.Length);
-        Color randomColor = colors[rand];
-        note.GetComponent<SpriteRenderer>().color = randomColor;
+        note.GetComponent<SpriteRenderer>().color = colors[rand];
 
-        // NoteColor 스크립트에 색상 정보 전달
         NoteColor noteColor = note.AddComponent<NoteColor>();
         noteColor.noteType = types[rand];
-
 
         // Rigidbody2D 설정
         Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
@@ -99,15 +85,12 @@ public class NoteSpawner : MonoBehaviour
             collider.isTrigger = true;
         }
 
-        // 데미지 처리 스크립트 추가
-        if (note.GetComponent<Damages>() == null)
+        // 충돌 감지용 스크립트 추가
+        if (note.GetComponent<NoteCollision>() == null)
         {
-            note.AddComponent<Damages>();
+            note.AddComponent<NoteCollision>();
         }
-        if (note.GetComponent<DestroyOnCutLine>() == null)
-        {
-            note.AddComponent<DestroyOnCutLine>();
-        }
+
         spawnedObjects.Add(note);
     }
 

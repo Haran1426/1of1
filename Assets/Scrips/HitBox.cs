@@ -7,21 +7,30 @@ public class HitBox : MonoBehaviour
 {
     private NoteColor currentNote;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Note"))
-        {
-            currentNote = other.GetComponent<NoteColor>();
-        }
-    }
+
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Note"))
         {
+            currentNote = other.GetComponent<NoteColor>();
+        }
+        if (other.CompareTag("Note"))
+        {
             currentNote = null;
         }
+
+        if (other.CompareTag("Player"))
+        {
+            if (Score.Instance != null)
+            {
+                int gain = Random.Range(300, 501);
+                Score.Instance.AddScore(gain);
+                Debug.Log("히트박스 히트 +{gain}점");
+            }
+        }
     }
+
 
     void Update()
     {
