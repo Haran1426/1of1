@@ -1280,6 +1280,7 @@ MonoBehaviour:
   spawnX: 6
   moveSpeed: 6
   maxObjects: 999
+  judgeX: -4.5
 --- !u!4 &1469891194
 Transform:
   m_ObjectHideFlags: 0
@@ -1510,7 +1511,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f86e3b032aa57ee49b286ee1497cce1c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
