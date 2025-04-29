@@ -38,7 +38,6 @@ public class HitBox : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.R) && currentNote.noteType == NoteColor.NoteType.Red)
             {
-
                 Score.Instance.AddScore(100);
                 Destroy(currentNote.gameObject);
             }
@@ -49,8 +48,6 @@ public class HitBox : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.B) && currentNote.noteType == NoteColor.NoteType.Blue)
             {
-
-
                 Score.Instance.AddScore(100);
                 Destroy(currentNote.gameObject);
             }

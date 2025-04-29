@@ -33,7 +33,7 @@ public class Score : MonoBehaviour
 
         Debug.Log($"점수: {score}");
 
-
+        // 점수 증가일 때만 애니메이션 실행 (중복 방지)
         if (isPositive)
         {
             if (scoreEffectCoroutine != null)
@@ -45,14 +45,14 @@ public class Score : MonoBehaviour
 
     public void OnHitCutLine()
     {
-        AddScore(-Random.Range(100, 201));
-        Debug.Log("점수 감소");
+        AddScore(-Random.Range(70, 151));
+        Debug.Log("❌ 점수 감소");
     }
 
     public void OnHitHitBox()
     {
-        AddScore(Random.Range(300, 501));
-        Debug.Log("점수 증가");
+        AddScore(Random.Range(200, 251));
+        Debug.Log("✅ 점수 증가");
     }
 
     private void UpdateScoreUI()
@@ -64,7 +64,7 @@ public class Score : MonoBehaviour
     private IEnumerator AnimateScoreUI()
     {
         Vector3 originalScale = Vector3.one;
-        Vector3 targetScale = originalScale * 1.05f;
+        Vector3 targetScale = originalScale * 1.03f;
 
         scoreText.rectTransform.localScale = originalScale; // 시작 시 스케일 리셋
 

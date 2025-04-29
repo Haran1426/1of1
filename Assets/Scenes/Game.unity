@@ -927,7 +927,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.3762905, g: 0.48676872, b: 0.6603774, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1280,7 +1280,13 @@ MonoBehaviour:
   spawnX: 6
   moveSpeed: 6
   maxObjects: 999
-  judgeX: -4.5
+  redNote: {fileID: 21300000, guid: e21875b324e80104a9056d430a35ae1a, type: 3}
+  greenNote: {fileID: 21300000, guid: cf1f641ff23317a4b853674c8ba89ba3, type: 3}
+  blueNote: {fileID: 21300000, guid: 1af17a70d3fad0c47ada49db4587a3a2, type: 3}
+  yellowNote: {fileID: 21300000, guid: 142038975f72bdf44981cf81a20e37ab, type: 3}
+  magentaNote: {fileID: 21300000, guid: c2c9e2f83adebe24e9b8ae84bff40f5e, type: 3}
+  cyanNote: {fileID: 21300000, guid: a69aa83286cba424d8eddbc87e2a9971, type: 3}
+  whiteNote: {fileID: 21300000, guid: f95ae6309bfc5ea4f9181c45eaabf401, type: 3}
 --- !u!4 &1469891194
 Transform:
   m_ObjectHideFlags: 0
@@ -1376,8 +1382,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729447419}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -6.1371, y: 0.13, z: 0}
-  m_LocalScale: {x: 7.5922213, y: 1.5331465, z: 1}
+  m_LocalPosition: {x: -7.022, y: 0.13, z: 0}
+  m_LocalScale: {x: 7.5922213, y: 3.3027716, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
