@@ -33,7 +33,7 @@ public class Score : MonoBehaviour
 
         Debug.Log($"점수: {score}");
 
-        // 점수 증가일 때만 애니메이션 실행 (중복 방지)
+
         if (isPositive)
         {
             if (scoreEffectCoroutine != null)
@@ -46,13 +46,13 @@ public class Score : MonoBehaviour
     public void OnHitCutLine()
     {
         AddScore(-Random.Range(100, 201));
-        Debug.Log("❌ 점수 감소");
+        Debug.Log("점수 감소");
     }
 
     public void OnHitHitBox()
     {
         AddScore(Random.Range(300, 501));
-        Debug.Log("✅ 점수 증가");
+        Debug.Log("점수 증가");
     }
 
     private void UpdateScoreUI()

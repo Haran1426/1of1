@@ -7,14 +7,19 @@ public class NoteCollision : MonoBehaviour
         if (collision.CompareTag("CutLine"))
         {
             Score.Instance.OnHitCutLine();
-            Debug.Log("Note∞° CutLineø° ¥Í¿Ω");
+
 
         }
         else if (collision.CompareTag("HitBox"))
         {
             Score.Instance.OnHitHitBox();
-            Debug.Log("Note∞° HitBoxø° ¥Í¿Ω");
             Destroy(gameObject);
         }
+
     }
+
+
+
+
+
 }
