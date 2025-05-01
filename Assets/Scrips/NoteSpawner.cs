@@ -89,6 +89,7 @@ public class NoteSpawner : MonoBehaviour
             rb.gravityScale = 0;
         }
         rb.velocity = Vector2.left * moveSpeed;
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate; //부드러운 이동 처리
 
         BoxCollider2D col = note.GetComponent<BoxCollider2D>();
         if (col == null) col = note.AddComponent<BoxCollider2D>();

@@ -24,6 +24,7 @@ public class Option : MonoBehaviour
     private int screenHeight = 1080;
     private bool fullScreen = true;
 
+
     void Start()
     {
         ApplySettings();
@@ -74,12 +75,20 @@ public class Option : MonoBehaviour
 
         options.SetActive(false);
     }
+    public void SetTargetFPS(int fps)
+    {
+        GameSettingsManager.Instance.targetFPS = fps;
+        GameSettingsManager.Instance.ApplyFrameSettings();
+    }
+
+
 
     public void ApplySettings()
     {
         QualitySettings.vSyncCount = vSyncToggle != null && vSyncToggle.isOn ? 1 : 0;
         Application.targetFrameRate = QualitySettings.vSyncCount > 0 ? -1 : targetFPS;
         Screen.SetResolution(screenWidth, screenHeight, fullScreen);
+
     }
 
     public void OnFPSSliderChanged(float value)
