@@ -46,13 +46,20 @@ public class Score : MonoBehaviour
     public void OnHitCutLine()
     {
         AddScore(-Random.Range(70, 151));
-        Debug.Log("❌ 점수 감소");
+        Debug.Log("점수 감소");
     }
+    // 점수 증가
 
+
+    public void OnSkill()
+    {
+        AddScore(Random.Range(100, 151));
+        Debug.Log("스킬로 점수 증가");
+    }
     public void OnHitHitBox()
     {
         AddScore(Random.Range(200, 251));
-        Debug.Log("✅ 점수 증가");
+        Debug.Log("점수 증가");
     }
 
     private void UpdateScoreUI()

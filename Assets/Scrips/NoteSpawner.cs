@@ -50,8 +50,8 @@ public class NoteSpawner : MonoBehaviour
             nextSpawnTime += spawnInterval;
         }
     }
-
-    void SpawnNote()
+          
+void SpawnNote()
     {
         if (spawnedObjects.Count >= maxObjects) return;
 

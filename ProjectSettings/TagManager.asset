@@ -8,6 +8,7 @@ TagManager:
   - NoteSpawner
   - Note
   - HitBox
+  - Skill
   layers:
   - Default
   - TransparentFX
