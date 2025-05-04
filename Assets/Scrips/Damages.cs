@@ -13,9 +13,6 @@ public class Damages : MonoBehaviour
             {
                 player.TakeDamage(10); 
             }
-
-            //자기 자신 제거
-            Destroy(gameObject);
         }
     }
 }
