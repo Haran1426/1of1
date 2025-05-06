@@ -385,7 +385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -500, y: 84.606384}
+  m_AnchoredPosition: {x: -443, y: 62.606384}
   m_SizeDelta: {x: 266.9046, y: 56.8727}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21809963
@@ -435,9 +435,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1979671022}
         m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
-        m_MethodName: ToggleMusic
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -635,7 +635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -380, y: -28}
+  m_AnchoredPosition: {x: -323, y: -50}
   m_SizeDelta: {x: 500.6728, y: 114.8787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &240649738
@@ -1033,7 +1033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -500, y: -102.5535}
+  m_AnchoredPosition: {x: -443, y: -124.5535}
   m_SizeDelta: {x: 266.9046, y: 56.8727}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &292570579
@@ -2059,7 +2059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -379, y: 338}
+  m_AnchoredPosition: {x: 322, y: 136}
   m_SizeDelta: {x: 500.6728, y: 114.8787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639367901
@@ -2321,7 +2321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -380, y: 158}
+  m_AnchoredPosition: {x: -323, y: 136}
   m_SizeDelta: {x: 500.6728, y: 114.8787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734531777
@@ -3666,8 +3666,8 @@ RectTransform:
   - {fileID: 21809962}
   - {fileID: 240649737}
   - {fileID: 292570578}
-  - {fileID: 692393001}
   - {fileID: 639367900}
+  - {fileID: 692393001}
   - {fileID: 1506017378}
   m_Father: {fileID: 1623235731}
   m_RootOrder: -1

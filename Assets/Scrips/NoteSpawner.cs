@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
 {
-    [Header("리듬 설정")]
+    [Header("Rhythm setting")]
     public AudioSource musicSource;
     public int bpm = 120;
     private float spawnInterval;
     private float nextSpawnTime;
 
-    [Header("노트 설정")]
+    [Header("Note Setting")]
     public GameObject objectPrefab;
     public float spawnX = 6f;
     public float moveSpeed = 7f;
     public int maxObjects = 999;
 
-    [Header("노트 스프라이트")]
+    [Header("Note Color")]
     public Sprite redNote;
     public Sprite greenNote;
     public Sprite blueNote;
@@ -31,7 +31,7 @@ public class NoteSpawner : MonoBehaviour
     {
         if (objectPrefab == null || musicSource == null)
         {
-            Debug.LogError("NoteSpawner: 오브젝트 프리팹 또는 음악이 연결되지 않았습니다!");
+
             return;
         }
 
@@ -89,7 +89,7 @@ void SpawnNote()
             rb.gravityScale = 0;
         }
         rb.velocity = Vector2.left * moveSpeed;
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate; //부드러운 이동 처리
+
 
         BoxCollider2D col = note.GetComponent<BoxCollider2D>();
         if (col == null) col = note.AddComponent<BoxCollider2D>();

@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1579086175357744195
 SpriteRenderer:
@@ -99,11 +99,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929ddc40c1d88994fabfc5d48ea6b5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSource: {fileID: 0}
   bpm: 120
   objectPrefab: {fileID: 931631816242695429, guid: 56b357ef862e5ee4cbd9ecc87646948f, type: 3}
   spawnX: 4.2
   moveSpeed: 10
   maxObjects: 5
+  redNote: {fileID: 0}
+  greenNote: {fileID: 0}
+  blueNote: {fileID: 0}
+  yellowNote: {fileID: 0}
+  magentaNote: {fileID: 0}
+  cyanNote: {fileID: 0}
+  whiteNote: {fileID: 0}
 --- !u!50 &-2494939192228723187
 Rigidbody2D:
   serializedVersion: 4
@@ -127,7 +135,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
