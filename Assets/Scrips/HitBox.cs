@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class HitBox : MonoBehaviour
 {
-    private NoteColor currentNote;
+    private NoteSpawner currentNote;
 
 
 
@@ -13,7 +13,7 @@ public class HitBox : MonoBehaviour
     {
         if (other.CompareTag("Note"))
         {
-            currentNote = other.GetComponent<NoteColor>();
+            currentNote = other.GetComponent<NoteSpawner>();
         }
         if (other.CompareTag("Note"))
         {
@@ -26,7 +26,7 @@ public class HitBox : MonoBehaviour
             {
                 int gain = Random.Range(300, 501);
                 Score.Instance.AddScore(gain);
-                Debug.Log("히트박스 히트 +{gain}점");
+                Debug.Log($"히트박스 히트 +{gain}점");
             }
         }
     }
@@ -36,17 +36,17 @@ public class HitBox : MonoBehaviour
     {
         if (currentNote != null)
         {
-            if (Input.GetKeyDown(KeyCode.R) && currentNote.noteType == NoteColor.NoteType.Red)
+            if (Input.GetKeyDown(KeyCode.R) && currentNote.noteType == NoteSpawner.NoteType.Red)
             {
                 Score.Instance.AddScore(100);
                 Destroy(currentNote.gameObject);
             }
-            else if (Input.GetKeyDown(KeyCode.G) && currentNote.noteType == NoteColor.NoteType.Green)
+            else if (Input.GetKeyDown(KeyCode.G) && currentNote.noteType == NoteSpawner.NoteType.Green)
             {
                 Score.Instance.AddScore(100);
                 Destroy(currentNote.gameObject);
             }
-            else if (Input.GetKeyDown(KeyCode.B) && currentNote.noteType == NoteColor.NoteType.Blue)
+            else if (Input.GetKeyDown(KeyCode.B) && currentNote.noteType == NoteSpawner.NoteType.Blue)
             {
                 Score.Instance.AddScore(100);
                 Destroy(currentNote.gameObject);

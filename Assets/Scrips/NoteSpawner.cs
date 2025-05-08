@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
@@ -23,6 +25,12 @@ public class NoteSpawner : MonoBehaviour
     public Sprite magentaNote;
     public Sprite cyanNote;
     public Sprite whiteNote;
+
+    public enum NoteType { Red, Green, Blue, Yellow, Magenta, Cyan, White }
+
+    public NoteType noteType = NoteType.Red;
+
+    public NoteType[] types;
 
     private List<GameObject> spawnedObjects = new();
     private float[] yPositions = { 1.5f, 0f, -1.5f };
@@ -60,37 +68,18 @@ public class NoteSpawner : MonoBehaviour
             float randomY = yPositions[Random.Range(0, yPositions.Length)];
             Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
             GameObject note = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
+
             Debug.Log("dd");
-
             // 랜덤 스프라이트 지정
-            Sprite[] sprites = {
-            redNote, greenNote, blueNote, yellowNote, magentaNote, cyanNote, whiteNote
-            };
-
-                NoteColor.NoteType[] types = {
-                NoteColor.NoteType.Red,
-                NoteColor.NoteType.Green,
-                NoteColor.NoteType.Blue,
-                NoteColor.NoteType.Yellow,
-                NoteColor.NoteType.Magenta,
-                NoteColor.NoteType.Cyan,
-                NoteColor.NoteType.White
-            };
+            Sprite[] sprites = { redNote, greenNote, blueNote, yellowNote, magentaNote, cyanNote, whiteNote };
 
             int rand = Random.Range(0, sprites.Length);
             SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
-            if (sr == null) sr = note.AddComponent<SpriteRenderer>();
             sr.sprite = sprites[rand];
-
-            NoteColor nc = note.AddComponent<NoteColor>();
-            nc.noteType = types[rand];
+            noteType = types[rand];
 
             Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
-            if (rb == null)
-            {
-                rb = note.AddComponent<Rigidbody2D>();
-                rb.gravityScale = 0;
-            }
+            rb.gravityScale = 0;
             rb.velocity = Vector2.left * moveSpeed;
 
 
@@ -98,8 +87,7 @@ public class NoteSpawner : MonoBehaviour
             if (col == null) col = note.AddComponent<BoxCollider2D>();
             col.isTrigger = true;
 
-            if (note.GetComponent<NoteCollision>() == null)
-                note.AddComponent<NoteCollision>();
+            note.AddComponent<NoteCollision>();
 
             spawnedObjects.Add(note);
         }
