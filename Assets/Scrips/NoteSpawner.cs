@@ -50,55 +50,59 @@ public class NoteSpawner : MonoBehaviour
             nextSpawnTime += spawnInterval;
         }
     }
-          
-void SpawnNote()
+
+    void SpawnNote()
     {
-        if (spawnedObjects.Count >= maxObjects) return;
-
-        float randomY = yPositions[Random.Range(0, yPositions.Length)];
-        Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
-        GameObject note = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
-
-        // 랜덤 스프라이트 지정
-        Sprite[] sprites = {
-            redNote, greenNote, blueNote, yellowNote, magentaNote, cyanNote, whiteNote
-        };
-
-        NoteColor.NoteType[] types = {
-            NoteColor.NoteType.Red,
-            NoteColor.NoteType.Green,
-            NoteColor.NoteType.Blue,
-            NoteColor.NoteType.Yellow,
-            NoteColor.NoteType.Magenta,
-            NoteColor.NoteType.Cyan,
-            NoteColor.NoteType.White
-        };
-
-        int rand = Random.Range(0, sprites.Length);
-        SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
-        if (sr == null) sr = note.AddComponent<SpriteRenderer>();
-        sr.sprite = sprites[rand];
-
-        NoteColor nc = note.AddComponent<NoteColor>();
-        nc.noteType = types[rand];
-
-        Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
-        if (rb == null)
+        if (Time.timeScale > 0)
         {
-            rb = note.AddComponent<Rigidbody2D>();
-            rb.gravityScale = 0;
+            if (spawnedObjects.Count >= maxObjects) return;
+
+            float randomY = yPositions[Random.Range(0, yPositions.Length)];
+            Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
+            GameObject note = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
+            Debug.Log("dd");
+
+            // 랜덤 스프라이트 지정
+            Sprite[] sprites = {
+            redNote, greenNote, blueNote, yellowNote, magentaNote, cyanNote, whiteNote
+            };
+
+                NoteColor.NoteType[] types = {
+                NoteColor.NoteType.Red,
+                NoteColor.NoteType.Green,
+                NoteColor.NoteType.Blue,
+                NoteColor.NoteType.Yellow,
+                NoteColor.NoteType.Magenta,
+                NoteColor.NoteType.Cyan,
+                NoteColor.NoteType.White
+            };
+
+            int rand = Random.Range(0, sprites.Length);
+            SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
+            if (sr == null) sr = note.AddComponent<SpriteRenderer>();
+            sr.sprite = sprites[rand];
+
+            NoteColor nc = note.AddComponent<NoteColor>();
+            nc.noteType = types[rand];
+
+            Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
+            if (rb == null)
+            {
+                rb = note.AddComponent<Rigidbody2D>();
+                rb.gravityScale = 0;
+            }
+            rb.velocity = Vector2.left * moveSpeed;
+
+
+            BoxCollider2D col = note.GetComponent<BoxCollider2D>();
+            if (col == null) col = note.AddComponent<BoxCollider2D>();
+            col.isTrigger = true;
+
+            if (note.GetComponent<NoteCollision>() == null)
+                note.AddComponent<NoteCollision>();
+
+            spawnedObjects.Add(note);
         }
-        rb.velocity = Vector2.left * moveSpeed;
-
-
-        BoxCollider2D col = note.GetComponent<BoxCollider2D>();
-        if (col == null) col = note.AddComponent<BoxCollider2D>();
-        col.isTrigger = true;
-
-        if (note.GetComponent<NoteCollision>() == null)
-            note.AddComponent<NoteCollision>();
-
-        spawnedObjects.Add(note);
     }
 
     public void RemoveFromList(GameObject note)
@@ -108,4 +112,5 @@ void SpawnNote()
             spawnedObjects.Remove(note);
         }
     }
+
 }
