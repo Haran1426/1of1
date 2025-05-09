@@ -3,7 +3,16 @@ guid: 929ddc40c1d88994fabfc5d48ea6b5f6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - musicSource: {instanceID: 0}
+  - objectPrefab: {instanceID: 0}
+  - redNote: {fileID: 21300000, guid: e21875b324e80104a9056d430a35ae1a, type: 3}
+  - greenNote: {fileID: 21300000, guid: cf1f641ff23317a4b853674c8ba89ba3, type: 3}
+  - blueNote: {fileID: 21300000, guid: 1af17a70d3fad0c47ada49db4587a3a2, type: 3}
+  - yellowNote: {fileID: 21300000, guid: 142038975f72bdf44981cf81a20e37ab, type: 3}
+  - magentaNote: {fileID: 21300000, guid: c2c9e2f83adebe24e9b8ae84bff40f5e, type: 3}
+  - cyanNote: {fileID: 21300000, guid: a69aa83286cba424d8eddbc87e2a9971, type: 3}
+  - whiteNote: {fileID: 21300000, guid: f95ae6309bfc5ea4f9181c45eaabf401, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

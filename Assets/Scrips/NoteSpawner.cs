@@ -83,10 +83,6 @@ public class NoteSpawner : MonoBehaviour
             rb.velocity = Vector2.left * moveSpeed;
 
 
-            BoxCollider2D col = note.GetComponent<BoxCollider2D>();
-            if (col == null) col = note.AddComponent<BoxCollider2D>();
-            col.isTrigger = true;
-
             note.AddComponent<NoteCollision>();
 
             spawnedObjects.Add(note);

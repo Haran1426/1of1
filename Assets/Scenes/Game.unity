@@ -308,7 +308,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -723,7 +723,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -997,7 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8816803f485ed54da1513b7809ada57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 288271296}
 --- !u!1 &292570577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1586,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: b366aac6bf8a563429dc7f8376af81cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25e1285fccc223842a1a2b0845913c53, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1649,7 +1649,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.12, y: 3.12}
+    oldSize: {x: 2.85, y: 2.85}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2685,7 +2685,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2831,7 +2831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db90a96514aa80458d23b532472ab87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPbar: {fileID: 0}
+  HPbar: {fileID: 1090592415}
 --- !u!1 &1145251686
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,7 +3055,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3131,7 +3131,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3207,7 +3207,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3358,21 +3358,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 929ddc40c1d88994fabfc5d48ea6b5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
+  musicSource: {fileID: 1730305402}
   bpm: 120
-  objectPrefab: {fileID: 0}
+  objectPrefab: {fileID: 931631816242695429, guid: 56b357ef862e5ee4cbd9ecc87646948f, type: 3}
   spawnX: 6
   moveSpeed: 7
   maxObjects: 999
-  redNote: {fileID: 0}
-  greenNote: {fileID: 0}
-  blueNote: {fileID: 0}
-  yellowNote: {fileID: 0}
-  magentaNote: {fileID: 0}
-  cyanNote: {fileID: 0}
-  whiteNote: {fileID: 0}
+  redNote: {fileID: 21300000, guid: e21875b324e80104a9056d430a35ae1a, type: 3}
+  greenNote: {fileID: 21300000, guid: cf1f641ff23317a4b853674c8ba89ba3, type: 3}
+  blueNote: {fileID: 21300000, guid: 1af17a70d3fad0c47ada49db4587a3a2, type: 3}
+  yellowNote: {fileID: 21300000, guid: 142038975f72bdf44981cf81a20e37ab, type: 3}
+  magentaNote: {fileID: 21300000, guid: c2c9e2f83adebe24e9b8ae84bff40f5e, type: 3}
+  cyanNote: {fileID: 21300000, guid: a69aa83286cba424d8eddbc87e2a9971, type: 3}
+  whiteNote: {fileID: 21300000, guid: dd913d2b81d01f946a3b00661d3191cb, type: 3}
   noteType: 0
-  types: 
+  types: 00000000010000000200000003000000040000000500000006000000
 --- !u!4 &1469891194
 Transform:
   m_ObjectHideFlags: 0
@@ -3662,7 +3662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1536596896
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4664,7 +4664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d33603c245c81f49ad549de596b1ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsText: {fileID: 0}
+  fpsText: {fileID: 18816578}
 --- !u!1 &1984846463
 GameObject:
   m_ObjectHideFlags: 0
