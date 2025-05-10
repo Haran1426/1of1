@@ -69,7 +69,7 @@ public class NoteSpawner : MonoBehaviour
             Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
             GameObject note = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
 
-            Debug.Log("dd");
+     
             // 랜덤 스프라이트 지정
             Sprite[] sprites = { redNote, greenNote, blueNote, yellowNote, magentaNote, cyanNote, whiteNote };
 

@@ -23,4 +23,14 @@ public class Player : MonoBehaviour
         }
        
     }
+    public void Damage(int amount)
+    {
+        HP -= amount;
+        Debug.Log("플레이어 HP: " + HP);
+
+        if (HP <= 0)
+        {
+            Debug.Log("사망");
+        }
+    }
 }
