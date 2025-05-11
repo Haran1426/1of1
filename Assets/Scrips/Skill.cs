@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Skill : MonoBehaviour
 {
+    public Skill SweepSkill;
     public GameObject hitboxPrefab;
     public float cooldown = 30f;
     public float sweepDuration = 0.5f;
@@ -11,13 +12,17 @@ public class Skill : MonoBehaviour
     public Vector2 endPos = new Vector2(6.3f, 0f);
 
     [Header("쿨타임 UI")]
-    public Image cooldownImage; // Inspector에서 연결
+    public Image cooldownImage; 
 
     private bool isCooldown = false;
     private float cooldownTimer = 0f;
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SweepSkill.TryActivateSkill();
+        }
         if (isCooldown)
         {
             cooldownTimer -= Time.deltaTime;
@@ -44,11 +49,6 @@ public class Skill : MonoBehaviour
         hitbox.tag = "Skill";
         hitbox.transform.position = new Vector2(startPos.x, transform.position.y);
 
-        if (hitbox.GetComponent<BoxCollider2D>() == null)
-        {
-            BoxCollider2D col = hitbox.AddComponent<BoxCollider2D>();
-            col.isTrigger = true;
-        }
 
         if (hitbox.GetComponent<Rigidbody2D>() == null)
         {

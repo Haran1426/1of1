@@ -1968,6 +1968,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 969270683787382233, guid: ccaf82cd1b8a4f649a54da9a2b19a735, type: 3}
+      propertyPath: SweepSkill
+      value: 
+      objectReference: {fileID: 708923185}
+    - target: {fileID: 969270683787382233, guid: ccaf82cd1b8a4f649a54da9a2b19a735, type: 3}
+      propertyPath: cooldownImage
+      value: 
+      objectReference: {fileID: 1529053034}
     - target: {fileID: 6379276483348348316, guid: ccaf82cd1b8a4f649a54da9a2b19a735, type: 3}
       propertyPath: m_Name
       value: Skill
@@ -2258,6 +2266,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692393000}
   m_CullTransparentMesh: 1
+--- !u!114 &708923185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 969270683787382233, guid: ccaf82cd1b8a4f649a54da9a2b19a735, type: 3}
+  m_PrefabInstance: {fileID: 631255815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e701a239405ff44caeb77f6e8eb8c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &733514634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,6 +3620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e701a239405ff44caeb77f6e8eb8c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SweepSkill: {fileID: 0}
   hitboxPrefab: {fileID: 0}
   cooldown: 30
   sweepDuration: 0.5
