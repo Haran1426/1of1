@@ -88,7 +88,21 @@ public class NoteSpawner : MonoBehaviour
             spawnedObjects.Add(note);
         }
     }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("CutLine"))
+    //    {
+    //        Score.Instance.OnHitCutLine();
+    //        Debug.Log("Note가 CutLine에 닿음");
 
+    //    }
+    //    else if (collision.CompareTag("HitBox"))
+    //    {
+    //        Score.Instance.OnHitHitBox();
+    //        Debug.Log("Note가 HitBox에 닿음");
+    //        Destroy(gameObject);
+    //    }
+    //}
     public void RemoveFromList(GameObject note)
     {
         if (spawnedObjects.Contains(note))

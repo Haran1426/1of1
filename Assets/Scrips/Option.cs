@@ -11,13 +11,13 @@ public class Option : MonoBehaviour
     public Slider sfx;
     public Toggle sfxToggle;
 
-    [Header("프레임 설정")]
+    [Header("프레임")]
     public Slider fpsSlider;
     public TextMeshProUGUI fpsText;
-    private int targetFPS = 60;
+    private int targetFPS = 240;
     public Toggle vSyncToggle;
 
-    [Header("해상도 설정")]
+    [Header("해상도")]
     public TMP_Dropdown resolutionDropdown;
 
     private int screenWidth = 1920;

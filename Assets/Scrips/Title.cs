@@ -10,12 +10,11 @@ public class Title : MonoBehaviour
     public void StartButton()
     {
         SceneManager.LoadScene("Game");
-        Debug.Log("ddd");
+
     }
     public void StartButton2()
     {
         SceneManager.LoadScene("Title");
-        Debug.Log("dddddd");
     }
 
     public void ExitGame()

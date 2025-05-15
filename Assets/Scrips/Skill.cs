@@ -1,17 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI; // UI »ç¿ë
+using UnityEngine.UI;
 using System.Collections;
 
 public class Skill : MonoBehaviour
 {
     public Skill SweepSkill;
     public GameObject hitboxPrefab;
-    public float cooldown = 30f;
+    public float cooldown = 5f;
     public float sweepDuration = 0.5f;
     public Vector2 startPos = new Vector2(-4.3f, 0f);
     public Vector2 endPos = new Vector2(6.3f, 0f);
 
-    [Header("ÄðÅ¸ÀÓ UI")]
+    [Header("ÄðÅ¸ÀÓUI")]
     public Image cooldownImage; 
 
     private bool isCooldown = false;
