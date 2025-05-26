@@ -176,9 +176,9 @@ TextureImporter:
       name: Sprite-attackk-Sheet_3
       rect:
         serializedVersion: 2
-        x: 686
+        x: 667
         y: 0
-        width: 287
+        width: 306
         height: 267
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -218,9 +218,9 @@ TextureImporter:
       name: Sprite-attackk-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1357
+        x: 1336
         y: 0
-        width: 273
+        width: 294
         height: 267
       alignment: 0
       pivot: {x: 0, y: 0}

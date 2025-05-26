@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Skill Profile
+  m_Name: Skill Profile 1
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 2938769993336656267}
---- !u!114 &2938769993336656267
+  - {fileID: 2715202704867803394}
+--- !u!114 &2715202704867803394
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,22 +32,22 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 702.69
+    value: 3.48
   threshold:
     overrideState: 1
-    value: 1
+    value: 2.52
   softKnee:
     overrideState: 1
     value: 0.5
   clamp:
     overrideState: 1
-    value: 48.4
+    value: 65472
   diffusion:
     overrideState: 1
-    value: 5.1
+    value: 7
   anamorphicRatio:
     overrideState: 1
-    value: 0
+    value: 0.09
   color:
     overrideState: 1
     value: {r: 1, g: 1, b: 1, a: 1}

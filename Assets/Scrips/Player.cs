@@ -3,7 +3,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     
-    public int HP = 100;
+    private int HP;
+
+    private void Awake()
+    {
+        HP = 100;
+    }
     void Update()
     {
         transform.position = new Vector3(-4.3f, transform.position.y, transform.position.z);

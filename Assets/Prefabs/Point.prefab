@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3643402784797763582}
   - component: {fileID: 1579086175357744195}
-  - component: {fileID: 3734301096857197407}
   - component: {fileID: -2494939192228723187}
   - component: {fileID: 9010750556634008452}
   m_Layer: 0
@@ -87,31 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3734301096857197407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4749703633974433340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 929ddc40c1d88994fabfc5d48ea6b5f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
-  bpm: 120
-  objectPrefab: {fileID: 931631816242695429, guid: 56b357ef862e5ee4cbd9ecc87646948f, type: 3}
-  spawnX: 4.2
-  moveSpeed: 10
-  maxObjects: 5
-  redNote: {fileID: 0}
-  greenNote: {fileID: 0}
-  blueNote: {fileID: 0}
-  yellowNote: {fileID: 0}
-  magentaNote: {fileID: 0}
-  cyanNote: {fileID: 0}
-  whiteNote: {fileID: 0}
 --- !u!50 &-2494939192228723187
 Rigidbody2D:
   serializedVersion: 4
