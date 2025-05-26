@@ -5,7 +5,7 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     public static Score Instance;
-    private int score = 0;
+    private int score;
 
     [Header("점수 UI")]
     public TextMeshProUGUI scoreText;
@@ -14,6 +14,7 @@ public class Score : MonoBehaviour
 
     void Awake()
     {
+        score = 0;
         if (Instance == null)
             Instance = this;
         else

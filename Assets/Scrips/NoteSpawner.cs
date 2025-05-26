@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoteSpawner : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class NoteSpawner : MonoBehaviour
     public Sprite magentaNote;
     public Sprite cyanNote;
     public Sprite whiteNote;
+
+    [Header("HitLine")]
+    public Transform HitLine; // 인스펙터에서 HitLine 드래그해 넣기
+    public float judgementRange = 10f; // 판정 범위 설정
 
     public enum NoteType { Red, Green, Blue, Yellow, Magenta, Cyan, White }
     public NoteType[] types;
@@ -53,7 +58,15 @@ public class NoteSpawner : MonoBehaviour
         //HandleMiss();  // ⬅️ 누락된 감지 로직 호출 (추가!)
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CutLine"))
+        {
+            Score.Instance.OnHitCutLine();
 
+
+        }
+    }
     void SpawnNote()
     {
         if (Time.timeScale > 0)
@@ -74,7 +87,6 @@ public class NoteSpawner : MonoBehaviour
             data.noteType = types[rand];
 
             Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
-            rb.gravityScale = 0;
             rb.velocity = Vector2.left * moveSpeed;
 
             note.tag = "Note";
@@ -94,8 +106,9 @@ public class NoteSpawner : MonoBehaviour
                 GameObject note = spawnedObjects[i];
                 if (note == null) continue;
 
-                float distance = Mathf.Abs(note.transform.position.x - -4.3f); // 판정 위치
-                if (distance > 1f) continue;
+                float distance = Mathf.Abs(note.transform.position.x - HitLine.position.x);
+                if (distance > judgementRange) continue;
+
 
                 NoteData data = note.GetComponent<NoteData>();
                 if (data == null) continue;
@@ -129,11 +142,17 @@ public class NoteSpawner : MonoBehaviour
 
                 if (correct)
                 {
-                    Score.Instance.AddScore(100);
+                    Debug.Log("노트 맞음! 점수 증가");
+                    if (Score.Instance != null)
+                        Score.Instance.OnHitHitBox();
+                    else
+                        Debug.LogWarning("Score.Instance가 null입니다.");
+
                     Destroy(note);
                     spawnedObjects.RemoveAt(i);
                     break;
                 }
+
             }
         }
     }
