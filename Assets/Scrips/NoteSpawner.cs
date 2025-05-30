@@ -191,7 +191,4 @@ public class NoteSpawner : MonoBehaviour
 }
 
 // ⬇️ NoteData 클래스 (같은 파일에 둬도 무방함)
-public class NoteData : MonoBehaviour
-{
-    public NoteSpawner.NoteType noteType;
-}
+
