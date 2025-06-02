@@ -22,7 +22,7 @@ public class Note : MonoBehaviour
             {
                 isHit = true;
                 Score.Instance.AddScore(100);
-                Debug.Log($"🎯 Hit {noteType} note!");
+                Debug.Log($"Hit {noteType} note!");
                 Destroy(gameObject);
             }
         }
