@@ -1,103 +1,97 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NoteSpawner : MonoBehaviour
 {
     [Header("Rhythm setting")]
     public AudioSource musicSource;
-    public int bpm = 120;
-    private float spawnInterval;
-    private float nextSpawnTime;
+    public string mapName = "test_track"; // Resources/Maps/test_track.json
 
-    [Header("Note Setting")]
+    [Header("Note Settings")]
     public GameObject objectPrefab;
-    private float spawnX = 6f;
-    private float moveSpeed = 2f;
+    public float spawnX = 6f;
+    public float moveSpeed = 2f;
     public int maxObjects = 999;
 
-    [Header("Note Color")]
-    public Sprite redNote;
-    public Sprite greenNote;
-    public Sprite blueNote;
-    public Sprite yellowNote;
-    public Sprite magentaNote;
-    public Sprite cyanNote;
-    public Sprite whiteNote;
+    [Header("Note Sprites")]
+    public Sprite redNote, greenNote, blueNote;
+    public Sprite yellowNote, magentaNote, cyanNote, whiteNote;
 
     [Header("HitLine")]
-    public Transform HitLine; // 인스펙터에서 HitLine 드래그해 넣기
-    public float judgementRange = 10f; // 판정 범위 설정
+    public Transform HitLine;
+    public float judgementRange = 1f;
 
     public enum NoteType { Red, Green, Blue, Yellow, Magenta, Cyan, White }
-    public NoteType[] types;
 
     private List<GameObject> spawnedObjects = new();
     private float[] yPositions = { 1.5f, 0f, -1.5f };
 
+    private MapData mapData;
+    private int currentNoteIndex = 0;
+
     void Start()
     {
-        if (objectPrefab == null || musicSource == null) return;
+        // Load Map
+        TextAsset jsonFile = Resources.Load<TextAsset>($"Maps/{mapName}");
+        if (jsonFile == null)
+        {
+            Debug.LogError("맵을 찾을 수 없습니다: " + mapName);
+            return;
+        }
 
-        spawnInterval = 60f / bpm;
-        nextSpawnTime = 0f;
+        mapData = JsonUtility.FromJson<MapData>(jsonFile.text);
+        if (mapData == null || mapData.notes == null)
+        {
+            Debug.LogError("맵 데이터 파싱 실패");
+            return;
+        }
+
         musicSource.Play();
     }
 
     void Update()
     {
-        if (!musicSource.isPlaying) return;
+        if (!musicSource.isPlaying || mapData == null) return;
 
-        while (musicSource.time >= nextSpawnTime)
+        float currentTime = musicSource.time;
+
+        while (currentNoteIndex < mapData.notes.Count &&
+               mapData.notes[currentNoteIndex].time <= currentTime)
         {
-            SpawnNote();
-            nextSpawnTime += spawnInterval;
+            SpawnNote(mapData.notes[currentNoteIndex]);
+            currentNoteIndex++;
         }
 
-        HandleInput(); // ⬅️ 입력 처리
-        //HandleMiss();  // ⬅️ 누락된 감지 로직 호출 (추가!)
+        HandleInput();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void SpawnNote(NoteData noteData)
     {
-        if (collision.CompareTag("CutLine"))
-        {
-            Score.Instance.OnHitCutLine();
+        if (spawnedObjects.Count >= maxObjects) return;
 
+        float y = yPositions[Random.Range(0, yPositions.Length)];
+        Vector3 spawnPos = new Vector3(spawnX, y, 0);
+        GameObject note = Instantiate(objectPrefab, spawnPos, Quaternion.identity);
 
-        }
-    }
-    void SpawnNote()
-    {
-        if (Time.timeScale > 0)
-        {
-            if (spawnedObjects.Count >= maxObjects) return;
+        NoteType type = ConvertType(noteData.type);
 
-            float randomY = yPositions[Random.Range(0, yPositions.Length)];
-            Vector3 spawnPosition = new Vector3(spawnX, randomY, 0);
-            GameObject note = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
+        SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
+        sr.sprite = GetSpriteForType(type);
 
-            // 랜덤 스프라이트 지정
-            Sprite[] sprites = { redNote, greenNote, blueNote, yellowNote, magentaNote, cyanNote, whiteNote };
-            int rand = Random.Range(0, sprites.Length);
-            SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
-            sr.sprite = sprites[rand];
+        NoteDataComponent data = note.AddComponent<NoteDataComponent>();
+        data.noteType = type;
 
-            NoteData data = note.AddComponent<NoteData>(); // ⬅️ NoteType 저장
-            data.noteType = types[rand];
+        Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.left * moveSpeed;
 
-            Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.left * moveSpeed;
-
-            note.tag = "Note";
-
-            spawnedObjects.Add(note);
-        }
+        note.tag = "Note";
+        spawnedObjects.Add(note);
     }
 
     void HandleInput()
     {
-        spawnedObjects.RemoveAll(note => note == null); // 삭제된 노트 제거
+        spawnedObjects.RemoveAll(note => note == null);
 
         if (Input.anyKeyDown)
         {
@@ -109,86 +103,70 @@ public class NoteSpawner : MonoBehaviour
                 float distance = Mathf.Abs(note.transform.position.x - HitLine.position.x);
                 if (distance > judgementRange) continue;
 
-
-                NoteData data = note.GetComponent<NoteData>();
+                NoteDataComponent data = note.GetComponent<NoteDataComponent>();
                 if (data == null) continue;
 
-                bool correct = false;
-
-                switch (data.noteType)
-                {
-                    case NoteType.Red:
-                        correct = Input.GetKeyDown(KeyCode.R);
-                        break;
-                    case NoteType.Green:
-                        correct = Input.GetKeyDown(KeyCode.G);
-                        break;
-                    case NoteType.Blue:
-                        correct = Input.GetKeyDown(KeyCode.B);
-                        break;
-                    case NoteType.Yellow:
-                        correct = Input.GetKeyDown(KeyCode.R) && Input.GetKeyDown(KeyCode.G);
-                        break;
-                    case NoteType.Magenta:
-                        correct = Input.GetKeyDown(KeyCode.R) && Input.GetKeyDown(KeyCode.B);
-                        break;
-                    case NoteType.Cyan:
-                        correct = Input.GetKeyDown(KeyCode.G) && Input.GetKeyDown(KeyCode.B);
-                        break;
-                    case NoteType.White:
-                        correct = Input.GetKeyDown(KeyCode.R) && Input.GetKeyDown(KeyCode.G) && Input.GetKeyDown(KeyCode.B);
-                        break;
-                }
+                bool correct = CheckInput(data.noteType);
 
                 if (correct)
                 {
-                    Debug.Log("노트 맞음! 점수 증가");
-                    if (Score.Instance != null)
-                        Score.Instance.OnHitHitBox();
-                    else
-                        Debug.LogWarning("Score.Instance가 null입니다.");
+                    Debug.Log("노트 히트!");
+                    Score.Instance?.OnHitHitBox();
 
                     Destroy(note);
                     spawnedObjects.RemoveAt(i);
                     break;
                 }
-
             }
         }
     }
 
-    //void HandleMiss()
-    //{
-    //    for (int i = spawnedObjects.Count - 1; i >= 0; i--)
-    //    {
-    //        GameObject note = spawnedObjects[i];
-    //        if (note == null) continue;
-
-    //        // 일정 위치 이하로 내려간 노트 감지
-    //        if (note.transform.position.x <= -6f)
-    //        {
-    //            if (Score.Instance != null)
-    //            {
-    //                Score.Instance.OnHitCutLine();
-    //            }
-
-
-
-    //            Destroy(note);
-    //            spawnedObjects.RemoveAt(i);
-    //        }
-    //    }
-    //}
-
-
-    public void RemoveFromList(GameObject note)
+    bool CheckInput(NoteType type)
     {
-        if (spawnedObjects.Contains(note))
+        bool r = Input.GetKey(KeyCode.R);
+        bool g = Input.GetKey(KeyCode.G);
+        bool b = Input.GetKey(KeyCode.B);
+
+        return type switch
         {
-            spawnedObjects.Remove(note);
-        }
+            NoteType.Red => r && !g && !b,
+            NoteType.Green => !r && g && !b,
+            NoteType.Blue => !r && !g && b,
+            NoteType.Yellow => r && g && !b,
+            NoteType.Magenta => r && !g && b,
+            NoteType.Cyan => !r && g && b,
+            NoteType.White => r && g && b,
+            _ => false
+        };
+    }
+
+    NoteType ConvertType(string type)
+    {
+        return type switch
+        {
+            "R" => NoteType.Red,
+            "G" => NoteType.Green,
+            "B" => NoteType.Blue,
+            "RG" => NoteType.Yellow,
+            "RB" => NoteType.Magenta,
+            "GB" => NoteType.Cyan,
+            "RGB" => NoteType.White,
+            _ => NoteType.Red
+        };
+    }
+
+    Sprite GetSpriteForType(NoteType type)
+    {
+        return type switch
+        {
+            NoteType.Red => redNote,
+            NoteType.Green => greenNote,
+            NoteType.Blue => blueNote,
+            NoteType.Yellow => yellowNote,
+            NoteType.Magenta => magentaNote,
+            NoteType.Cyan => cyanNote,
+            NoteType.White => whiteNote,
+            _ => redNote
+        };
     }
 }
-
-// ⬇️ NoteData 클래스 (같은 파일에 둬도 무방함)
-
