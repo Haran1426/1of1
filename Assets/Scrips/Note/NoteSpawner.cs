@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEditor.U2D.Aseprite;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
+using static MapCreator; // MapCreator 안의 NoteData, GimmickData, MapData 사용
 
 public class NoteSpawner : MonoBehaviour
 {
@@ -32,7 +32,6 @@ public class NoteSpawner : MonoBehaviour
 
     void Start()
     {
-        // Load Map
         TextAsset jsonFile = Resources.Load<TextAsset>($"Maps/{mapName}");
         if (jsonFile == null)
         {

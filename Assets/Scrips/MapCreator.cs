@@ -8,16 +8,16 @@ public class MapCreator : MonoBehaviour
     public class NoteData
     {
         public float time;
-        public string type;
+        public string type; // 예: "R", "RG", "RGB"
     }
 
     [System.Serializable]
     public class GimmickData
     {
         public float time;
-        public string type;
-        public float value;
-        public float duration;
+        public string type; // 예: "SpeedUp", "FadeOut"
+        public float value; // 예: 속도倍率 또는 투명도 값
+        public float duration; // 지속 시간
     }
 
     [System.Serializable]
