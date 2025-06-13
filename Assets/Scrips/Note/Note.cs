@@ -4,6 +4,7 @@ using UnityEngine;
 public class Note : MonoBehaviour
     
 {
+    
     public NoteSpawner.NoteType noteType;
     private float hitZoneX = -4.3f; // 판정선 X 위치
     private float hitRange = 0.3f;  // 허용 오차 범위

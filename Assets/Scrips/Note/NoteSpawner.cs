@@ -6,12 +6,12 @@ public class NoteSpawner : MonoBehaviour
 {
     [Header("Rhythm setting")]
     public AudioSource musicSource;
-    public string mapName = "test_track"; // Resources/Maps/test_track.json
+    public string mapName = "Go_On"; // Resources/Maps/test_track.json
 
     [Header("Note Settings")]
     public GameObject objectPrefab;
     public float spawnX = 6f;
-    public float moveSpeed = 2f;
+    public float moveSpeed = 3f;
     public int maxObjects = 999;
 
     [Header("Note Sprites")]
@@ -78,7 +78,7 @@ public class NoteSpawner : MonoBehaviour
         SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
         sr.sprite = GetSpriteForType(type);
 
-        NoteDataComponent data = note.AddComponent<NoteDataComponent>();
+        Note data = note.AddComponent<Note>();
         data.noteType = type;
 
         Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
@@ -102,7 +102,7 @@ public class NoteSpawner : MonoBehaviour
                 float distance = Mathf.Abs(note.transform.position.x - HitLine.position.x);
                 if (distance > judgementRange) continue;
 
-                NoteDataComponent data = note.GetComponent<NoteDataComponent>();
+                Note data = note.GetComponent<Note>();
                 if (data == null) continue;
 
                 bool correct = CheckInput(data.noteType);
@@ -119,7 +119,13 @@ public class NoteSpawner : MonoBehaviour
             }
         }
     }
-
+    public void RemoveFromList(GameObject obj)
+    {
+        if (spawnedObjects.Contains(obj))
+        {
+            spawnedObjects.Remove(obj);
+        }
+    }
     bool CheckInput(NoteType type)
     {
         bool r = Input.GetKey(KeyCode.R);

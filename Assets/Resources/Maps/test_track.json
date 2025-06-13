@@ -1,0 +1,48 @@
+{
+    "songName": "test_track",
+    "bpm": 120.0,
+    "notes": [
+        {
+            "time": 1.0,
+            "type": "R"
+        },
+        {
+            "time": 2.0,
+            "type": "G"
+        },
+        {
+            "time": 3.0,
+            "type": "B"
+        },
+        {
+            "time": 4.0,
+            "type": "RG"
+        },
+        {
+            "time": 5.0,
+            "type": "RB"
+        },
+        {
+            "time": 6.0,
+            "type": "GB"
+        },
+        {
+            "time": 7.0,
+            "type": "RGB"
+        }
+    ],
+    "gimmicks": [
+        {
+            "time": 8.0,
+            "type": "SpeedUp",
+            "value": 1.5,
+            "duration": 0.0
+        },
+        {
+            "time": 10.0,
+            "type": "FadeOut",
+            "value": 0.0,
+            "duration": 2.0
+        }
+    ]
+}

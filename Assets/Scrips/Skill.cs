@@ -11,8 +11,8 @@ public class Skill : MonoBehaviour
     public Vector2 startPos = new Vector2(-4.3f, 0f);
     public Vector2 endPos = new Vector2(6.3f, 0f);
 
-    [Header("쿨타임UI")]
-    public Image cooldownImage; 
+    [Header("쿨타임 UI")]
+    public Image cooldownImage;
 
     private bool isCooldown = false;
     private float cooldownTimer = 0f;
@@ -23,11 +23,11 @@ public class Skill : MonoBehaviour
         {
             SweepSkill.TryActivateSkill();
         }
+
         if (isCooldown)
         {
             cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer < 0f)
-                cooldownTimer = 0f;
+            cooldownTimer = Mathf.Max(cooldownTimer, 0f);
 
             if (cooldownImage != null)
                 cooldownImage.fillAmount = 1f - (cooldownTimer / cooldown);
@@ -49,8 +49,7 @@ public class Skill : MonoBehaviour
         hitbox.tag = "Skill";
         hitbox.transform.position = new Vector2(startPos.x, transform.position.y);
 
-
-        if (hitbox.GetComponent<Rigidbody2D>() == null)
+        if (!hitbox.TryGetComponent<Rigidbody2D>(out _))
         {
             Rigidbody2D rb = hitbox.AddComponent<Rigidbody2D>();
             rb.gravityScale = 0;
@@ -77,7 +76,7 @@ public class Skill : MonoBehaviour
             cooldownImage.fillAmount = 0f;
     }
 
-    // 충돌 처리
+    // 충돌 처리 클래스
     private class SkillHitbox : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D other)
@@ -88,7 +87,9 @@ public class Skill : MonoBehaviour
 
                 NoteSpawner spawner = FindObjectOfType<NoteSpawner>();
                 if (spawner != null)
+                {
                     spawner.RemoveFromList(other.gameObject);
+                }
 
                 Destroy(other.gameObject);
             }
