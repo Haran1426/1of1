@@ -4,11 +4,18 @@
 
 //public class AutoNoteRecorder : MonoBehaviour
 //{
+//    [Header("Audio & Timing")]
 //    public AudioSource audioSource;
-//    public float threshold = 0.1f;
-//    public float minInterval = 0.15f;
-//    public KeyCode stopKey = KeyCode.Return;
 //    public float bpm = 120f;
+//    [Range(-0.3f, 0.3f)]
+//    public float timingOffset = 0.1f;
+
+//    [Header("Detection Settings")]
+//    public float threshold = 0.3f;       // 감도: 0.3 이상이면 감지
+//    public float minInterval = 0.25f;    // 노트 간 최소 간격
+
+//    [Header("Controls")]
+//    public KeyCode stopKey = KeyCode.Return;
 
 //    private float lastNoteTime = 0f;
 //    private List<Note> notes = new();
@@ -37,7 +44,7 @@
 //        {
 //            lastNoteTime = Time.time;
 
-//            float snappedTime = SnapToBeat(audioSource.time, bpm);
+//            float snappedTime = SnapToBeat(audioSource.time + timingOffset, bpm);
 //            string noteType = GetNoteType(volume);
 
 //            notes.Add(new Note
@@ -46,25 +53,46 @@
 //                type = noteType
 //            });
 
-//            Debug.Log($"\"time\": {snappedTime:F2}, \"type\": \"{noteType}\"");
+//            Debug.Log($"\"time\": {snappedTime:F2}, \"type\": \"{noteType}\", volume: {volume:F3}");
 //        }
 //    }
 
 //    string GetNoteType(float volume)
 //    {
-//        if (volume >= 0.35f)
+//        float chance = Random.value;
+
+//        if (volume >= 0.3f)
 //        {
-//            return "RGB";
+//            if (chance < 0.4f) return "RGB"; // 40%
+//            else if (chance < 0.8f)
+//            {
+//                string[] mids = { "RG", "RB", "GB" };
+//                return mids[Random.Range(0, mids.Length)];
+//            }
+//            else
+//            {
+//                string[] lows = { "R", "G", "B" };
+//                return lows[Random.Range(0, lows.Length)];
+//            }
 //        }
-//        else if (volume >= 0.2f)
+//        else if (volume >= 0.15f)
 //        {
-//            string[] midTypes = { "RG", "RB", "GB" };
-//            return midTypes[Random.Range(0, midTypes.Length)];
+//            if (chance < 0.2f) return "RGB"; // 20%
+//            else if (chance < 0.6f)
+//            {
+//                string[] mids = { "RG", "RB", "GB" };
+//                return mids[Random.Range(0, mids.Length)];
+//            }
+//            else
+//            {
+//                string[] lows = { "R", "G", "B" };
+//                return lows[Random.Range(0, lows.Length)];
+//            }
 //        }
 //        else
 //        {
-//            string[] lowTypes = { "R", "G", "B" };
-//            return lowTypes[Random.Range(0, lowTypes.Length)];
+//            string[] lows = { "R", "G", "B" };
+//            return lows[Random.Range(0, lows.Length)];
 //        }
 //    }
 

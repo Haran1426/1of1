@@ -55,14 +55,21 @@ public class NoteSpawner : MonoBehaviour
 
         float currentTime = musicSource.time;
 
-        while (currentNoteIndex < mapData.notes.Count &&
-               mapData.notes[currentNoteIndex].time <= currentTime)
+        float timeToReach = mapData.notes[currentNoteIndex].time - GetNoteDelay();
+        if (timeToReach <= currentTime)
         {
             SpawnNote(mapData.notes[currentNoteIndex]);
             currentNoteIndex++;
         }
 
         HandleInput();
+    }
+    float GetNoteDelay()
+    {
+        float spawnX = this.spawnX;
+        float hitX = HitLine.position.x;
+        float distance = spawnX - hitX;
+        return distance / moveSpeed;
     }
 
     void SpawnNote(NoteData noteData)
