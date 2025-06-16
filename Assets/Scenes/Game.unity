@@ -590,12 +590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6a78579bd33d14bb5c1f2d091dc240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1730305402}
-  bpm: 120
-  timingOffset: 0.1
-  threshold: 0.1
-  minInterval: 0.3
-  stopKey: 13
 --- !u!4 &156001917
 Transform:
   m_ObjectHideFlags: 0
@@ -1543,7 +1537,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: 25e1285fccc223842a1a2b0845913c53, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02ab47c9ae1b5a3499e4647e5e9ff866, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1606,7 +1600,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.85, y: 2.85}
+    oldSize: {x: 2.5405405, y: 2.7567568}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4868,15 +4862,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: {fileID: 1536596895}
+  loadingPanel: {fileID: 0}
   bgmSource: {fileID: 1730305402}
   sfxSources: []
-  bgm: {fileID: 734531777}
-  sfx: {fileID: 240649738}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
   sfxToggle: {fileID: 292570579}
   fpsSlider: {fileID: 639367901}
   fpsText: {fileID: 498738144}
-  vSyncToggle: {fileID: 0}
   resolutionDropdown: {fileID: 0}
+  fakeLoadingDuration: 2
+  nextSceneName: Game
 --- !u!114 &1979671028
 MonoBehaviour:
   m_ObjectHideFlags: 0
