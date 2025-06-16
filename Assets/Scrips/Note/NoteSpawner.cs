@@ -53,9 +53,11 @@ public class NoteSpawner : MonoBehaviour
     {
         if (!musicSource.isPlaying || mapData == null) return;
 
-        float currentTime = musicSource.time;
+        if (currentNoteIndex >= mapData.notes.Count) return; // 추가된 안전장치
 
+        float currentTime = musicSource.time;
         float timeToReach = mapData.notes[currentNoteIndex].time - GetNoteDelay();
+
         if (timeToReach <= currentTime)
         {
             SpawnNote(mapData.notes[currentNoteIndex]);
@@ -64,6 +66,7 @@ public class NoteSpawner : MonoBehaviour
 
         HandleInput();
     }
+
     float GetNoteDelay()
     {
         float spawnX = this.spawnX;

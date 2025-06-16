@@ -5,16 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    
-
-    public void StartButton()
+    public void RestartTitle()
     {
-        SceneManager.LoadScene("Game");
-
-    }
-    public void StartButton2()
-    {
-        SceneManager.LoadScene("Title");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
     }
 
     public void ExitGame()
@@ -22,7 +15,7 @@ public class Title : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); 
+        Application.Quit();
 #endif
     }
 }
