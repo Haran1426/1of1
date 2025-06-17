@@ -11,8 +11,8 @@
 //    public float timingOffset = 0.1f;
 
 //    [Header("Detection Settings")]
-//    public float threshold = 0.62f;
-//    public float minInterval = 0.5f;
+//    public float threshold = 0.2f;
+//    public float minInterval = 1f;
 
 //    [Header("Controls")]
 //    public KeyCode stopKey = KeyCode.Return;
@@ -61,10 +61,10 @@
 //    {
 //        float chance = Random.value;
 
-//        if (volume >= 0.3f)
+//        if (volume >= 0.2f)
 //        {
-//            if (chance < 0.4f) return "RGB"; // 40%
-//            else if (chance < 0.8f)
+//            if (chance < 0.4f) return "RGB";
+//            else if (chance < 0.6f)
 //            {
 //                string[] mids = { "RG", "RB", "GB" };
 //                return mids[Random.Range(0, mids.Length)];
@@ -77,7 +77,7 @@
 //        }
 //        else if (volume >= 0.15f)
 //        {
-//            if (chance < 0.2f) return "RGB"; // 20%
+//            if (chance < 0.2f) return "RGB"; 
 //            else if (chance < 0.6f)
 //            {
 //                string[] mids = { "RG", "RB", "GB" };
@@ -109,7 +109,7 @@
 //            songName = "Go_On",
 //            bpm = bpm,
 //            notes = notes,
-//            gimmicks = new List<Gimmick>() // 비워둠
+//            gimmicks = new List<Gimmick>()
 //        };
 
 //        string json = JsonUtility.ToJson(mapData, true);
