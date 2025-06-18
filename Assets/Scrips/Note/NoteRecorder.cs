@@ -10,7 +10,7 @@ public class NoteRecorder : MonoBehaviour
     public float bpm = 120f;               // BPM
     public bool useSnap = true;            // 비트 스냅 여부
     public KeyCode recordKey = KeyCode.Space;  // 노트 입력 키
-    public KeyCode saveKey = KeyCode.S;        // 저장 키
+    public KeyCode saveKey = KeyCode.S;       
 
     private List<Note> notes = new();      // 노트 목록
 
