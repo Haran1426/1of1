@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143cefdd35fdfe5468f6b7c9aac856aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
+  music: {fileID: 1730305402}
   timingOffset: -0.08
   bpm: 120
   useSnap: 1
