@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8cdb561b61c10dd49b44c446ae7a2d3b
+guid: 60f661317fd7c5d47867a56b9145a35e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-Attackk-Sheet_0
+      name: Sprite-idle-Sheet-Sheet_0
       rect:
         serializedVersion: 2
-        x: 14
+        x: 4
         y: 0
-        width: 287
-        height: 285
+        width: 285
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a609ce6785e7d274085635ae1b0138d1
-      internalID: -1145518469
+      spriteID: f66701c775fe29a449baa3dde32a898c
+      internalID: -1314495858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-Attackk-Sheet_1
+      name: Sprite-idle-Sheet-Sheet_1
       rect:
         serializedVersion: 2
-        x: 340
+        x: 298
         y: 0
-        width: 289
-        height: 285
+        width: 286
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cea5c4695fa9b034daf529ec739cd9f7
-      internalID: 493784143
+      spriteID: 70223d8ebb621294987af27f570453a4
+      internalID: 1300887456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-Attackk-Sheet_2
+      name: Sprite-idle-Sheet-Sheet_2
       rect:
         serializedVersion: 2
-        x: 662
+        x: 592
         y: 0
-        width: 309
-        height: 285
+        width: 286
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c699892949199db4c8bf1eb57b05f197
-      internalID: 640104643
+      spriteID: 14b186347e842114e83b1b0ac5cc56b4
+      internalID: -221979168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-Attackk-Sheet_3
+      name: Sprite-idle-Sheet-Sheet_3
       rect:
         serializedVersion: 2
-        x: 980
+        x: 886
         y: 0
-        width: 324
-        height: 285
+        width: 286
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 387b21a084d390943b6020adb960927d
-      internalID: 1633984203
+      spriteID: fb01f6f979345814e8521908ea24ebff
+      internalID: -934278980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-Attackk-Sheet_4
+      name: Sprite-idle-Sheet-Sheet_4
       rect:
         serializedVersion: 2
-        x: 1316
+        x: 1181
         y: 0
-        width: 314
-        height: 285
+        width: 285
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 732d4b151f8ffbf41880aa9ed78518a2
-      internalID: 1205868458
+      spriteID: 6f2d097fd021aff4eb156dd391fd5d5f
+      internalID: 1852550220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-Attackk-Sheet_5
+      name: Sprite-idle-Sheet-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1646
+        x: 1474
         y: 0
-        width: 287
-        height: 285
+        width: 285
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4650a47913bfca34c98d53941cb19d81
-      internalID: -612720744
+      spriteID: 2719cbc47b9962d43a6b11380a0395e4
+      internalID: -973134702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-Attackk-Sheet_6
+      name: Sprite-idle-Sheet-Sheet_6
       rect:
         serializedVersion: 2
-        x: 1972
+        x: 1768
         y: 0
-        width: 288
-        height: 285
+        width: 286
+        height: 306
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,8 +250,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48ee0a905de4c034c8dac1dc1db0a531
-      internalID: 236897340
+      spriteID: d120d53eb1df2c242ad12914f0123784
+      internalID: 565227511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-idle-Sheet-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 2062
+        y: 0
+        width: 286
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ebb6d1fb0806b948b5a284ad29d6dd5
+      internalID: 1627328819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-idle-Sheet-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 2356
+        y: 0
+        width: 286
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ec0b348357af346a425188f16b737c
+      internalID: 1360250519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-idle-Sheet-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 2651
+        y: 0
+        width: 285
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2706db8409f3f70469f06e89ba9f7ea8
+      internalID: -1300690273
       vertices: []
       indices: 
       edges: []
@@ -260,20 +323,23 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-Attackk-Sheet_0: -1145518469
-      Sprite-Attackk-Sheet_1: 493784143
-      Sprite-Attackk-Sheet_2: 640104643
-      Sprite-Attackk-Sheet_3: 1633984203
-      Sprite-Attackk-Sheet_4: 1205868458
-      Sprite-Attackk-Sheet_5: -612720744
-      Sprite-Attackk-Sheet_6: 236897340
+      Sprite-idle-Sheet-Sheet_0: -1314495858
+      Sprite-idle-Sheet-Sheet_1: 1300887456
+      Sprite-idle-Sheet-Sheet_2: -221979168
+      Sprite-idle-Sheet-Sheet_3: -934278980
+      Sprite-idle-Sheet-Sheet_4: 1852550220
+      Sprite-idle-Sheet-Sheet_5: -973134702
+      Sprite-idle-Sheet-Sheet_6: 565227511
+      Sprite-idle-Sheet-Sheet_7: 1627328819
+      Sprite-idle-Sheet-Sheet_8: 1360250519
+      Sprite-idle-Sheet-Sheet_9: -1300690273
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

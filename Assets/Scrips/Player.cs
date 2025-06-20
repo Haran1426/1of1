@@ -4,10 +4,13 @@ public class Player : MonoBehaviour
 {
     
     private int HP;
+    Animator animator;
 
-    private void Awake()
+    private void Start()
     {
         HP = 100;
+        animator = GetComponent<Animator>();
+        Debug.Log("Animator ¿¬°áµÊ: " + animator);
     }
     void Update()
     {
@@ -26,7 +29,12 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
         }
-       
+
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.B))
+        {
+            animator.SetTrigger("Attack");
+        }
+
     }
     public void Damage(int amount)
     {
