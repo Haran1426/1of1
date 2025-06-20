@@ -5,7 +5,8 @@ public class Player : MonoBehaviour
     
     private int HP;
     Animator animator;
-
+    bool isAttacking = false;
+    bool attackQueued = false;
     private void Start()
     {
         HP = 100;
@@ -34,7 +35,38 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("Attack");
         }
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+        // 공격 키 입력 처리
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!isAttacking)
+            {
+                // 바로 공격
+                animator.SetTrigger("Attack");
+                isAttacking = true;
+            }
+            else
+            {
+                // 공격 중이면 대기열에 저장
+                attackQueued = true;
+            }
+        }
 
+        // 애니메이션이 idle로 돌아왔을 때
+        if (isAttacking && state.IsName("idle"))
+        {
+            if (attackQueued)
+            {
+                // 기다리던 입력 실행
+                animator.SetTrigger("Attack");
+                attackQueued = false;
+            }
+            else
+            {
+                // 아무것도 대기 중이 없으면 공격 상태 종료
+                isAttacking = false;
+            }
+        }
     }
     public void Damage(int amount)
     {
