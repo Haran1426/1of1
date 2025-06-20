@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     {
         HP = 100;
         animator = GetComponent<Animator>();
-        Debug.Log("Animator ¿¬°áµÊ: " + animator);
     }
     void Update()
     {
