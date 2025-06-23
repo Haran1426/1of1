@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 18816577}
   - component: {fileID: 18816579}
-  - component: {fileID: 18816580}
   - component: {fileID: 18816578}
   m_Layer: 5
   m_Name: FPSText (TMP)
@@ -261,19 +260,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18816576}
   m_CullTransparentMesh: 1
---- !u!114 &18816580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18816576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d33603c245c81f49ad549de596b1ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fpsText: {fileID: 18816578}
 --- !u!1 &20496770
 GameObject:
   m_ObjectHideFlags: 0

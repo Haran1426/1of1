@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteType: 0
+  hitEffectPrefab: {fileID: 0}
+  missEffectPrefab: {fileID: 0}
 --- !u!114 &-687984232384891503
 MonoBehaviour:
   m_ObjectHideFlags: 0
