@@ -28,7 +28,7 @@ public class Obj : MonoBehaviour
             
         }
         Point_Note = new GameObject();
-
+        Point_Note.name = "Point_Enemy";
         Point_Renderer = Point_Note.AddComponent<SpriteRenderer>();
         
     }
