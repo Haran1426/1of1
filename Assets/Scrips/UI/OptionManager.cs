@@ -8,9 +8,8 @@ using UnityEngine;
 public class Option : MonoBehaviour
 {
     [Header("패널")]
-    public GameObject options;         // 옵션 창
-    public GameObject loadingPanel;    // 로딩 패널
-
+    public GameObject options;         
+    public GameObject loadingPanel;   
     [Header("오디오")]
     public AudioSource bgmSource;
     public AudioSource[] sfxSources;
@@ -31,7 +30,7 @@ public class Option : MonoBehaviour
 
     [Header("로딩 설정")]
     public float fakeLoadingDuration = 2f;
-    public string nextSceneName = "Game"; // 이동할 씬 이름
+    public string nextSceneName = "Game"; 
 
     void Start()
     {

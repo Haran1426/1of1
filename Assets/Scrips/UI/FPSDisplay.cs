@@ -5,7 +5,7 @@ public class FPSDisplay : MonoBehaviour
 {
     public TextMeshProUGUI fpsText;
     private float deltaTime;
-    private float updateInterval = 0.15f; //갱신 단위 조절
+    private float updateInterval = 0.12f; //갱신 단위 조절
     private float timeSinceLastUpdate = 0f;
 
     void Update()
