@@ -9,6 +9,7 @@ TagManager:
   - Note
   - HitBox
   - Skill
+  - Select_Note
   layers:
   - Default
   - TransparentFX
