@@ -1,9 +1,9 @@
-﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine;
 
 public class Option : MonoBehaviour
 {
@@ -150,5 +150,35 @@ public class Option : MonoBehaviour
     {
         Application.targetFrameRate = targetFPS;
         Screen.SetResolution(screenWidth, screenHeight, fullScreen);
+    }
+}
+
+
+// --- Merged from GameSettingsManager.cs ---
+public class GameSettingsManager : MonoBehaviour
+{
+    public static GameSettingsManager Instance;
+
+    public int targetFPS = 60;
+    public bool useVSync = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            ApplyFrameSettings();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void ApplyFrameSettings()
+    {
+        QualitySettings.vSyncCount = useVSync ? 1 : 0;
+        Application.targetFrameRate = useVSync ? -1 : targetFPS;
     }
 }

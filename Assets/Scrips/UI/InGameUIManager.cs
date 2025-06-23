@@ -1,6 +1,69 @@
-﻿using System.Collections;
-using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine;
+
+public class GameUI : MonoBehaviour
+{
+    [SerializeField]
+    private Slider HPbar;
+    private float maxHP = 100;
+    private float curHP = 100;
+    float imsi;
+
+    void Start()
+    {
+        imsi = curHP / maxHP;
+        HPbar.value = imsi;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (curHP > 0)
+            {
+                curHP -= 10;
+                if (curHP < 0) curHP = 0;
+            }
+
+            imsi = curHP / maxHP; 
+        }
+
+        HandleHP();
+    }
+
+    private void HandleHP()
+    {
+        HPbar.value = Mathf.Lerp(HPbar.value, imsi, Time.deltaTime * 10);
+    }
+}
+
+
+
+public class Pausemenu : MonoBehaviour
+{
+    public GameObject pausePannel;
+    public GameObject Target;
+    public void Menu_Btn()
+    {
+
+        Time.timeScale = 0f;
+
+
+        pausePannel.SetActive(true);
+    }
+
+    public void Continue()
+    {
+
+        Time.timeScale = 1f;
+        pausePannel.SetActive(false);
+        Target.gameObject.SetActive(true);
+    }
+}
+
 
 public class Score : MonoBehaviour
 {
@@ -49,7 +112,7 @@ public class Score : MonoBehaviour
         AddScore(-Random.Range(70, 151));
         Debug.Log("점수 감소");
     }
-    // 점수 증가
+ 
 
 
     public void OnSkill()
