@@ -1,95 +1,80 @@
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Skill : MonoBehaviour
 {
-    public Skill SweepSkill;
-    public GameObject hitboxPrefab;
-    public float cooldown = 5f;
-    public float sweepDuration = 0.5f;
-    public Vector2 startPos = new Vector2(-4.3f, 0f);
-    public Vector2 endPos = new Vector2(6.3f, 0f);
+    [Header("히트박스 프리팹 (인스펙터 할당)")]
+    [SerializeField] private GameObject hitboxPrefab;
 
-    [Header("��Ÿ�� UI")]
-    public Image cooldownImage;
+    [Header("스킬 설정")]
+    [SerializeField] private float cooldown = 5f;
+    [SerializeField] private float sweepDuration = 0.5f;
+    [SerializeField] private float startX = -4.3f;
+    [SerializeField] private float endX = 6.3f;
 
     private bool isCooldown = false;
     private float cooldownTimer = 0f;
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SweepSkill.TryActivateSkill();
-        }
+        if (Input.GetKeyDown(KeyCode.Space) && !isCooldown)
+            StartCoroutine(ActivateSkill());
 
         if (isCooldown)
         {
             cooldownTimer -= Time.deltaTime;
-            cooldownTimer = Mathf.Max(cooldownTimer, 0f);
-
-            if (cooldownImage != null)
-                cooldownImage.fillAmount = 1f - (cooldownTimer / cooldown);
+            if (cooldownTimer <= 0f)
+                isCooldown = false;
         }
-    }
-
-    public void TryActivateSkill()
-    {
-        if (!isCooldown)
-            StartCoroutine(ActivateSkill());
     }
 
     private IEnumerator ActivateSkill()
     {
+        // 1) 쿨다운 시작
         isCooldown = true;
         cooldownTimer = cooldown;
 
-        GameObject hitbox = Instantiate(hitboxPrefab);
-        hitbox.tag = "Skill";
-        hitbox.transform.position = new Vector2(startPos.x, transform.position.y);
+        // 2) 히트박스 생성
+        Vector2 spawnPos = new Vector2(startX, transform.position.y);
+        GameObject hitbox = Instantiate(hitboxPrefab, spawnPos, Quaternion.identity);
 
-        if (!hitbox.TryGetComponent<Rigidbody2D>(out _))
-        {
-            Rigidbody2D rb = hitbox.AddComponent<Rigidbody2D>();
-            rb.gravityScale = 0;
-            rb.isKinematic = true;
-        }
+        // → [삭제된 부분]
+        //    Rigidbody2D, Collider2D 자동 추가 코드 제거
+        //    if (!hitbox.TryGetComponent<Rigidbody2D>(out var rb)) { … }
+        //    if (!hitbox.TryGetComponent<Collider2D>(out var col)) { … }
 
-        hitbox.AddComponent<SkillHitbox>();
+        // 3) 충돌 처리 스크립트는 아직 없다면 추가
+        if (!hitbox.TryGetComponent<HitboxHandler>(out _))
+            hitbox.AddComponent<HitboxHandler>();
 
+        // 4) 스윕 이동
         float elapsed = 0f;
         while (elapsed < sweepDuration)
         {
             float t = elapsed / sweepDuration;
-            float newX = Mathf.Lerp(startPos.x, endPos.x, t);
-            hitbox.transform.position = new Vector2(newX, transform.position.y);
+            float x = Mathf.Lerp(startX, endX, t);
+            hitbox.transform.position = new Vector2(x, transform.position.y);
+
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         Destroy(hitbox);
-
-        yield return new WaitForSeconds(cooldown);
-        isCooldown = false;
-        if (cooldownImage != null)
-            cooldownImage.fillAmount = 0f;
     }
 
-    // �浹 ó�� Ŭ����
-    private class SkillHitbox : MonoBehaviour
+    // 내부 클래스: 노트 충돌 처리
+    private class HitboxHandler : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Note"))
             {
-                Score.Instance?.AddScore(Random.Range(100, 151));
+                int points = Random.Range(100, 151);
+                Score.Instance?.AddScore(points);
 
-                NoteSpawner spawner = FindObjectOfType<NoteSpawner>();
+                var spawner = FindObjectOfType<NoteSpawner>();
                 if (spawner != null)
-                {
                     spawner.RemoveFromList(other.gameObject);
-                }
 
                 Destroy(other.gameObject);
             }
