@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 1258791528}
   - component: {fileID: 1258791527}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: <
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -890,8 +890,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 617719885}
-  - {fileID: 531126612}
   - {fileID: 1258791526}
+  - {fileID: 531126612}
   - {fileID: 370262625}
   m_Father: {fileID: 0}
   m_RootOrder: 1
