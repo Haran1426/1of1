@@ -1,184 +1,114 @@
+// InGameUIManager.cs
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// 반드시 한 파일엔 public class 하나만!
-public class GameUI : MonoBehaviour
+public class InGameUIManager : MonoBehaviour
 {
-    [SerializeField] private Slider HPbar;
-    private float maxHP = 100;
-    private float curHP = 100;
-    private float imsi;
+    public static InGameUIManager Instance { get; private set; }
 
-    public GameObject perfectImage;
-    public GameObject hitImage;
-    public GameObject missImage;
+    [Header("판정 이미지")]
+    [SerializeField] private GameObject perfectImage;
+    [SerializeField] private GameObject hitImage;
+    [SerializeField] private GameObject missImage;
+    [SerializeField] private float judgementDisplayTime = 0.5f;
 
-    void Start()
+    [Header("판정 이펙트 Prefab")]
+    [SerializeField] private GameObject perfectEffectPrefab;
+    [SerializeField] private GameObject hitEffectPrefab;
+    [SerializeField] private GameObject missEffectPrefab;
+
+    [Header("판정별 점수 범위")]
+    [SerializeField] private Vector2 perfectScoreRange = new Vector2(300, 400);
+    [SerializeField] private Vector2 hitScoreRange = new Vector2(200, 250);
+    [SerializeField] private Vector2 missScoreRange = new Vector2(-150, -70);
+
+    [Header("스킬 점수 범위")]
+    [SerializeField] private Vector2 skillScoreRange = new Vector2(100, 150);
+
+    [Header("Score UI")]
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    private int currentScore = 0;
+
+    public enum JudgementType { Perfect, Hit, Miss }
+
+    private void Awake()
     {
-        imsi = curHP / maxHP;
-        HPbar.value = imsi;
-
-        if (perfectImage) perfectImage.SetActive(false);
-        if (hitImage) hitImage.SetActive(false);
-        if (missImage) missImage.SetActive(false);
+        if (Instance == null) Instance = this;
+        else { Destroy(gameObject); return; }
+        UpdateScoreText();
     }
 
-    void Update()
+    /// <summary>
+    /// R/G/B 입력 시 호출: 이미지·이펙트·점수를 한 번에 처리.
+    /// </summary>
+    public void HandleJudgement(JudgementType type, Vector3 worldPos)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        // 1) 이미지 표시
+        GameObject img = type switch
         {
-            if (curHP > 0)
-            {
-                curHP -= 10;
-                if (curHP < 0) curHP = 0;
-            }
-            imsi = curHP / maxHP;
-        }
-        HandleHP();
-    }
+            JudgementType.Perfect => perfectImage,
+            JudgementType.Hit => hitImage,
+            JudgementType.Miss => missImage,
+            _ => null
+        };
+        if (img != null) StartCoroutine(ShowImage(img));
 
-    private void HandleHP()
-    {
-        HPbar.value = Mathf.Lerp(HPbar.value, imsi, Time.deltaTime * 10);
-    }
-
-    public void ShowJudgement(string type)
-    {
-        StartCoroutine(JudgementCoroutine(type));
-    }
-
-    private IEnumerator JudgementCoroutine(string type)
-    {
-        GameObject target = null;
-        if (type == "Perfect") target = perfectImage;
-        else if (type == "Hit") target = hitImage;
-        else if (type == "Miss") target = missImage;
-
-        if (target != null)
+        // 2) 이펙트 스폰
+        GameObject fxPrefab = type switch
         {
-            target.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            target.SetActive(false);
-        }
-    }
-}
-
-// 아래는 public 제거, 그냥 class로!
-class Pausemenu : MonoBehaviour
-{
-    public GameObject pausePannel;
-    public GameObject Target;
-    public void Menu_Btn()
-    {
-        Time.timeScale = 0f;
-        pausePannel.SetActive(true);
-    }
-
-    public void Continue()
-    {
-        Time.timeScale = 1f;
-        pausePannel.SetActive(false);
-        Target.gameObject.SetActive(true);
-    }
-}
-
-class Score : MonoBehaviour
-{
-    public static Score Instance;
-    private int score;
-
-    [Header("점수 UI")]
-    public TextMeshProUGUI scoreText;
-    private Coroutine scoreEffectCoroutine;
-
-    void Awake()
-    {
-        score = 0;
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
-
-    void Start()
-    {
-        UpdateScoreUI();
-    }
-
-    public void AddScore(int amount)
-    {
-        bool isPositive = amount > 0;
-        score += amount;
-        UpdateScoreUI();
-
-        Debug.Log($"점수: {score}");
-
-        if (isPositive)
+            JudgementType.Perfect => perfectEffectPrefab,
+            JudgementType.Hit => hitEffectPrefab,
+            JudgementType.Miss => missEffectPrefab,
+            _ => null
+        };
+        if (fxPrefab != null)
         {
-            if (scoreEffectCoroutine != null)
-                StopCoroutine(scoreEffectCoroutine);
-
-            scoreEffectCoroutine = StartCoroutine(AnimateScoreUI());
+            var fx = Instantiate(fxPrefab, worldPos, Quaternion.identity);
+            Destroy(fx, 1f);
         }
-    }
 
-    public void OnHitCutLine()
-    {
-        AddScore(-Random.Range(70, 151));
-        Debug.Log("점수 감소");
-    }
-
-    public void OnSkill()
-    {
-        AddScore(Random.Range(100, 151));
-        Debug.Log("스킬로 점수 증가");
-    }
-
-    public void OnPerfectHit()
-    {
-        AddScore(Random.Range(300, 401));
-        Debug.Log("Perfect로 점수 증가");
-    }
-
-    public void OnHitHitBox()
-    {
-        AddScore(Random.Range(200, 251));
-        Debug.Log("점수 증가");
-    }
-
-    private void UpdateScoreUI()
-    {
-        if (scoreText != null)
-            scoreText.text = score.ToString();
-    }
-
-    private IEnumerator AnimateScoreUI()
-    {
-        Vector3 originalScale = Vector3.one;
-        Vector3 targetScale = originalScale * 1.03f;
-
-        scoreText.rectTransform.localScale = originalScale;
-
-        float time = 0f;
-        float duration = 0.07f;
-
-        while (time < duration)
+        // 3) 점수 반영
+        Vector2 range = type switch
         {
-            scoreText.rectTransform.localScale = Vector3.Lerp(originalScale, targetScale, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        scoreText.rectTransform.localScale = targetScale;
+            JudgementType.Perfect => perfectScoreRange,
+            JudgementType.Hit => hitScoreRange,
+            JudgementType.Miss => missScoreRange,
+            _ => Vector2.zero
+        };
+        ModifyScore(Random.Range((int)range.x, (int)range.y));
+    }
 
-        time = 0f;
-        while (time < duration)
+    /// <summary> 스킬로 맞췄을 때: 점수만 추가 (이미지 없음) </summary>
+    public void OnSkillScoreOnly()
+        => ModifyScore(Random.Range((int)skillScoreRange.x, (int)skillScoreRange.y));
+
+    /// <summary> CutLine 통과 시: 점수만 차감 (이미지 없음) </summary>
+    public void OnMissScoreOnly()
+        => ModifyScore(Random.Range((int)missScoreRange.x, (int)missScoreRange.y));
+
+    private void ModifyScore(int delta)
+    {
+        currentScore += delta;
+        UpdateScoreText();
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText == null)
         {
-            scoreText.rectTransform.localScale = Vector3.Lerp(targetScale, originalScale, time / duration);
-            time += Time.deltaTime;
-            yield return null;
+            Debug.LogError("[UIManager] scoreText가 할당되지 않았습니다!");
+            return;
         }
-        scoreText.rectTransform.localScale = originalScale;
+        scoreText.text = currentScore.ToString();
+    }
+
+    private IEnumerator ShowImage(GameObject img)
+    {
+        img.SetActive(true);
+        yield return new WaitForSeconds(judgementDisplayTime);
+        img.SetActive(false);
     }
 }

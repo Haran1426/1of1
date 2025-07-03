@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9072737484801513841
+--- !u!1 &6974728713791300777
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5270981681748026776}
-  - component: {fileID: 3722958544303691886}
-  - component: {fileID: 3144055167242316332}
+  - component: {fileID: 677257086495450612}
+  - component: {fileID: 4289809173052968707}
+  - component: {fileID: 3130482918524492934}
   m_Layer: 5
   m_Name: Hit
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5270981681748026776
+--- !u!224 &677257086495450612
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9072737484801513841}
+  m_GameObject: {fileID: 6974728713791300777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,21 +38,21 @@ RectTransform:
   m_AnchoredPosition: {x: 35, y: 19}
   m_SizeDelta: {x: 181.7, y: 181.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3722958544303691886
+--- !u!222 &4289809173052968707
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9072737484801513841}
+  m_GameObject: {fileID: 6974728713791300777}
   m_CullTransparentMesh: 1
---- !u!114 &3144055167242316332
+--- !u!114 &3130482918524492934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9072737484801513841}
+  m_GameObject: {fileID: 6974728713791300777}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}

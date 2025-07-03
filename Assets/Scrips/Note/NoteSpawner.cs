@@ -1,30 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using static MapCreator; // MapCreator 안의 NoteData, GimmickData, MapData 사용
+using static MapCreator; // 맵 데이터 구조 직접 사용
 
 public class NoteSpawner : MonoBehaviour
 {
-    [Header("Rhythm setting")]
+    [Header("리듬 관련 세팅")]
     public AudioSource musicSource;
-    public string mapName = "Go_On"; // Resources/Maps/test_track.json
+    public string mapName = "Go_On"; // Resources/Maps/Go_On.json
 
-    [Header("Note Settings")]
+    [Header("노트 설정")]
     public GameObject objectPrefab;
     public float spawnX = 6f;
     public float moveSpeed = 3f;
     public int maxObjects = 999;
 
-    [Header("Note Sprites")]
+    [Header("노트 스프라이트")]
     public Sprite redNote, greenNote, blueNote;
     public Sprite yellowNote, magentaNote, cyanNote, whiteNote;
 
-    [Header("HitLine")]
+    [Header("판정선 오브젝트")]
     public Transform HitLine;
-    public float judgementRange = 1f;
 
     public enum NoteType { Red, Green, Blue, Yellow, Magenta, Cyan, White }
 
-    private List<GameObject> spawnedObjects = new();
+    // 스킬 등 외부에서 제거할 때 참조할 리스트
+    private List<GameObject> spawnedObjects = new List<GameObject>();
     private float[] yPositions = { 1.5f, 0f, -1.5f };
 
     private MapData mapData;
@@ -32,13 +32,13 @@ public class NoteSpawner : MonoBehaviour
 
     void Start()
     {
+        // 맵 데이터 로드
         TextAsset jsonFile = Resources.Load<TextAsset>($"Maps/{mapName}");
         if (jsonFile == null)
         {
-            Debug.LogError("맵을 찾을 수 없습니다: " + mapName);
+            Debug.LogError("맵 파일을 찾을 수 없습니다: " + mapName);
             return;
         }
-
         mapData = JsonUtility.FromJson<MapData>(jsonFile.text);
         if (mapData == null || mapData.notes == null)
         {
@@ -51,9 +51,9 @@ public class NoteSpawner : MonoBehaviour
 
     void Update()
     {
+        // 음악 재생 중일 때만 동작
         if (!musicSource.isPlaying || mapData == null) return;
-
-        if (currentNoteIndex >= mapData.notes.Count) return; // 추가된 안전장치
+        if (currentNoteIndex >= mapData.notes.Count) return;
 
         float currentTime = musicSource.time;
         float timeToReach = mapData.notes[currentNoteIndex].time - GetNoteDelay();
@@ -63,15 +63,11 @@ public class NoteSpawner : MonoBehaviour
             SpawnNote(mapData.notes[currentNoteIndex]);
             currentNoteIndex++;
         }
-
-        HandleInput();
     }
 
     float GetNoteDelay()
     {
-        float spawnX = this.spawnX;
-        float hitX = HitLine.position.x;
-        float distance = spawnX - hitX;
+        float distance = spawnX - HitLine.position.x;
         return distance / moveSpeed;
     }
 
@@ -80,79 +76,34 @@ public class NoteSpawner : MonoBehaviour
         if (spawnedObjects.Count >= maxObjects) return;
 
         float y = yPositions[Random.Range(0, yPositions.Length)];
-        Vector3 spawnPos = new Vector3(spawnX, y, 0);
+        Vector3 spawnPos = new Vector3(spawnX, y, 0f);
         GameObject note = Instantiate(objectPrefab, spawnPos, Quaternion.identity);
 
         NoteType type = ConvertType(noteData.type);
 
-        SpriteRenderer sr = note.GetComponent<SpriteRenderer>();
+        // 스프라이트 설정
+        var sr = note.GetComponent<SpriteRenderer>();
         sr.sprite = GetSpriteForType(type);
 
-        Note data = note.AddComponent<Note>();
-        data.noteType = type;
+        // Note 컴포넌트 부착 및 초기화
+        var noteScript = note.AddComponent<Note>();
+        noteScript.noteType = type;
+        noteScript.moveSpeed = moveSpeed;
+        noteScript.hitZoneX = HitLine.position.x;
 
-        Rigidbody2D rb = note.GetComponent<Rigidbody2D>();
+        // 물리 이동
+        var rb = note.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.left * moveSpeed;
 
         note.tag = "Note";
         spawnedObjects.Add(note);
     }
 
-    void HandleInput()
-    {
-        spawnedObjects.RemoveAll(note => note == null);
-
-        if (Input.anyKeyDown)
-        {
-            for (int i = 0; i < spawnedObjects.Count; i++)
-            {
-                GameObject note = spawnedObjects[i];
-                if (note == null) continue;
-
-                float distance = Mathf.Abs(note.transform.position.x - HitLine.position.x);
-                if (distance > judgementRange) continue;
-
-                Note data = note.GetComponent<Note>();
-                if (data == null) continue;
-
-                bool correct = CheckInput(data.noteType);
-
-                if (correct)
-                {
-                    Debug.Log("노트 히트!");
-                    Score.Instance?.OnHitHitBox();
-
-                    Destroy(note);
-                    spawnedObjects.RemoveAt(i);
-                    break;
-                }
-            }
-        }
-    }
+    // Skill 등 외부에서 호출: 내부 리스트에서 제거
     public void RemoveFromList(GameObject obj)
     {
         if (spawnedObjects.Contains(obj))
-        {
             spawnedObjects.Remove(obj);
-        }
-    }
-    bool CheckInput(NoteType type)
-    {
-        bool r = Input.GetKey(KeyCode.R);
-        bool g = Input.GetKey(KeyCode.G);
-        bool b = Input.GetKey(KeyCode.B);
-
-        return type switch
-        {
-            NoteType.Red => r && !g && !b,
-            NoteType.Green => !r && g && !b,
-            NoteType.Blue => !r && !g && b,
-            NoteType.Yellow => r && g && !b,
-            NoteType.Magenta => r && !g && b,
-            NoteType.Cyan => !r && g && b,
-            NoteType.White => r && g && b,
-            _ => false
-        };
     }
 
     NoteType ConvertType(string type)
@@ -166,7 +117,7 @@ public class NoteSpawner : MonoBehaviour
             "RB" => NoteType.Magenta,
             "GB" => NoteType.Cyan,
             "RGB" => NoteType.White,
-            _ => NoteType.Red
+            _ => NoteType.Red,
         };
     }
 
@@ -181,7 +132,7 @@ public class NoteSpawner : MonoBehaviour
             NoteType.Magenta => magentaNote,
             NoteType.Cyan => cyanNote,
             NoteType.White => whiteNote,
-            _ => redNote
+            _ => redNote,
         };
     }
 }

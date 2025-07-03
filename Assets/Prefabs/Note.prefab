@@ -114,8 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteType: 0
-  hitEffectPrefab: {fileID: 0}
-  missEffectPrefab: {fileID: 0}
+  perfectEffectPrefab: {fileID: 3248547407121155306, guid: 09cd9b86c0fdca243810b67cc3837bf3, type: 3}
+  hitEffectPrefab: {fileID: 6974728713791300777, guid: 4b87b89a23bb3e24995fe3303fc75570, type: 3}
+  missEffectPrefab: {fileID: 3165607495914575616, guid: 01ab117955c27ea4785b238b65e1df3d, type: 3}
 --- !u!114 &-687984232384891503
 MonoBehaviour:
   m_ObjectHideFlags: 0

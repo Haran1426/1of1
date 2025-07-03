@@ -1,111 +1,39 @@
-﻿using UnityEngine;
+﻿// Note.cs
+using UnityEngine;
 
 public class Note : MonoBehaviour
 {
     public NoteSpawner.NoteType noteType;
 
-    private float hitZoneX = -4.3f;
-    private float perfectRange = 0.1f;
-    private float hitRange = 0.3f;
-    private bool isHit = false;
+    [Header("이동 & 판정 존 설정")]
+    [Tooltip("노트 이동 속도")]
+    public float moveSpeed = 3f;
+    [Tooltip("판정할 X 좌표 (히트 존)")]
+    public float hitZoneX = -4.3f;
+    [Tooltip("일반 히트 허용 범위")]
+    public float hitRange = 0.3f;
+    [Tooltip("퍼펙트 히트 허용 범위")]
+    public float perfectRange = 0.1f;
 
-    [Header("Effect Prefabs")]
-    public GameObject perfectEffectPrefab;
-    public GameObject hitEffectPrefab;
-    public GameObject missEffectPrefab;
-
-    // ★ GameUI 참조
-    private GameUI gameUI;
-
-    void Start()
-    {
-        gameUI = FindObjectOfType<GameUI>();
-    }
+    // 외부 입력판정에서 이미 처리된 노트인지 플래그
+    [HideInInspector] public bool isHit = false;
 
     void Update()
     {
+        // 단순 이동만 담당 (판정은 NoteInputHandler 에서)
+        if (!isHit)
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (isHit) return;
 
-        float distanceToHitZone = Mathf.Abs(transform.position.x - hitZoneX);
-
-        if (Input.anyKeyDown && distanceToHitZone <= hitRange)
-        {
-            if (CheckInputForNote(noteType))
-            {
-                isHit = true;
-
-                if (distanceToHitZone <= perfectRange)
-                {
-                    Score.Instance.AddScore(Random.Range(300, 401));
-                    ShowEffect(perfectEffectPrefab);
-                    if (gameUI != null) gameUI.ShowJudgement("Perfect");
-                }
-                else
-                {
-                    Score.Instance.AddScore(Random.Range(100, 151));
-                    ShowEffect(hitEffectPrefab);
-                    if (gameUI != null) gameUI.ShowJudgement("Hit");
-                }
-
-                Destroy(gameObject);
-            }
-        }
-
-        if (transform.position.x < hitZoneX - 1f)
+        if (other.CompareTag("CutLine"))
         {
             isHit = true;
-            Score.Instance.OnHitCutLine();
-            ShowEffect(missEffectPrefab);
-            if (gameUI != null) gameUI.ShowJudgement("Miss");
+            InGameUIManager.Instance.OnMissScoreOnly();
             Destroy(gameObject);
         }
-    }
-
-    private void ShowEffect(GameObject effectPrefab)
-    {
-        if (effectPrefab != null)
-        {
-            GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
-            Destroy(effect, 1f);
-        }
-    }
-
-    private bool CheckInputForNote(NoteSpawner.NoteType type)
-    {
-        if (type == NoteSpawner.NoteType.Red)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Debug.Log("Red 판정됨!");
-                return true;
-            }
-        }
-        else if (type == NoteSpawner.NoteType.Green)
-        {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                Debug.Log("Green 판정됨!");
-                return true;
-            }
-        }
-        else if (type == NoteSpawner.NoteType.Blue)
-        {
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                Debug.Log("Blue 판정됨!");
-                return true;
-            }
-        }
-        else if (type == NoteSpawner.NoteType.Yellow)
-        {
-            if ((Input.GetKey(KeyCode.R) && Input.GetKeyDown(KeyCode.G)) ||
-                (Input.GetKey(KeyCode.G) && Input.GetKeyDown(KeyCode.R)))
-            {
-                Debug.Log("Yellow 판정됨!");
-                return true;
-            }
-        }
-
-        return false;
     }
 }

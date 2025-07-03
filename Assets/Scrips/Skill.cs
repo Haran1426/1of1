@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿// Skill.cs
 using System.Collections;
+using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    [Header("히트박스 프리팹 (인스펙터 할당)")]
+    [Header("히트박스 프리팹")]
     [SerializeField] private GameObject hitboxPrefab;
 
     [Header("스킬 설정")]
@@ -13,9 +14,9 @@ public class Skill : MonoBehaviour
     [SerializeField] private float endX = 6.3f;
 
     private bool isCooldown = false;
-    private float cooldownTimer = 0f;
+    private float cooldownTimer;
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isCooldown)
             StartCoroutine(ActivateSkill());
@@ -30,54 +31,41 @@ public class Skill : MonoBehaviour
 
     private IEnumerator ActivateSkill()
     {
-        // 1) 쿨다운 시작
         isCooldown = true;
         cooldownTimer = cooldown;
 
-        // 2) 히트박스 생성
-        Vector2 spawnPos = new Vector2(startX, transform.position.y);
-        GameObject hitbox = Instantiate(hitboxPrefab, spawnPos, Quaternion.identity);
+        // 히트박스 생성
+        Vector2 pos = new Vector2(startX, transform.position.y);
+        var hitbox = Instantiate(hitboxPrefab, pos, Quaternion.identity);
 
-        // → [삭제된 부분]
-        //    Rigidbody2D, Collider2D 자동 추가 코드 제거
-        //    if (!hitbox.TryGetComponent<Rigidbody2D>(out var rb)) { … }
-        //    if (!hitbox.TryGetComponent<Collider2D>(out var col)) { … }
-
-        // 3) 충돌 처리 스크립트는 아직 없다면 추가
-        if (!hitbox.TryGetComponent<HitboxHandler>(out _))
-            hitbox.AddComponent<HitboxHandler>();
-
-        // 4) 스윕 이동
-        float elapsed = 0f;
-        while (elapsed < sweepDuration)
+        // Sweep 애니메이션
+        float t = 0f;
+        while (t < sweepDuration)
         {
-            float t = elapsed / sweepDuration;
-            float x = Mathf.Lerp(startX, endX, t);
+            float x = Mathf.Lerp(startX, endX, t / sweepDuration);
             hitbox.transform.position = new Vector2(x, transform.position.y);
-
-            elapsed += Time.deltaTime;
+            t += Time.deltaTime;
             yield return null;
         }
 
         Destroy(hitbox);
     }
 
-    // 내부 클래스: 노트 충돌 처리
+    // 히트박스 충돌만 담당 → 점수는 UI매니저로
     private class HitboxHandler : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Note"))
-            {
-                int points = Random.Range(100, 151);
-                Score.Instance?.AddScore(points);
+            if (!other.CompareTag("Note")) return;
 
-                var spawner = FindObjectOfType<NoteSpawner>();
-                if (spawner != null)
-                    spawner.RemoveFromList(other.gameObject);
+            // 스킬 히트 시: 점수만 추가
+            InGameUIManager.Instance.OnSkillScoreOnly();
 
-                Destroy(other.gameObject);
-            }
+            // 스포너 관리(있으면)
+            var spawner = FindObjectOfType<NoteSpawner>();
+            spawner?.RemoveFromList(other.gameObject);
+
+            Destroy(other.gameObject);
         }
     }
 }
