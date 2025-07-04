@@ -47,23 +47,23 @@ public class InGameUIManager : MonoBehaviour
     public void HandleJudgement(JudgementType type, Vector3 worldPos)
     {
         // 1) 이미지 표시
-        GameObject img = type switch
+        GameObject img = null;
+        switch (type)
         {
-            JudgementType.Perfect => perfectImage,
-            JudgementType.Hit => hitImage,
-            JudgementType.Miss => missImage,
-            _ => null
-        };
+            case JudgementType.Perfect: img = perfectImage; break;
+            case JudgementType.Hit: img = hitImage; break;
+            case JudgementType.Miss: img = missImage; break;
+        }
         if (img != null) StartCoroutine(ShowImage(img));
 
         // 2) 이펙트 스폰
-        GameObject fxPrefab = type switch
+        GameObject fxPrefab = null;
+        switch (type)
         {
-            JudgementType.Perfect => perfectEffectPrefab,
-            JudgementType.Hit => hitEffectPrefab,
-            JudgementType.Miss => missEffectPrefab,
-            _ => null
-        };
+            case JudgementType.Perfect: fxPrefab = perfectEffectPrefab; break;
+            case JudgementType.Hit: fxPrefab = hitEffectPrefab; break;
+            case JudgementType.Miss: fxPrefab = missEffectPrefab; break;
+        }
         if (fxPrefab != null)
         {
             var fx = Instantiate(fxPrefab, worldPos, Quaternion.identity);
@@ -71,23 +71,34 @@ public class InGameUIManager : MonoBehaviour
         }
 
         // 3) 점수 반영
-        Vector2 range = type switch
+        switch (type)
         {
-            JudgementType.Perfect => perfectScoreRange,
-            JudgementType.Hit => hitScoreRange,
-            JudgementType.Miss => missScoreRange,
-            _ => Vector2.zero
-        };
-        ModifyScore(Random.Range((int)range.x, (int)range.y));
+            case JudgementType.Perfect:
+                ModifyScore(Random.Range((int)perfectScoreRange.x, (int)perfectScoreRange.y));
+                break;
+
+            case JudgementType.Hit:
+                ModifyScore(Random.Range((int)hitScoreRange.x, (int)hitScoreRange.y));
+                break;
+
+            case JudgementType.Miss:
+                // Miss 는 이 메서드로만 점수 차감
+                ModifyScore(Random.Range((int)missScoreRange.x, (int)missScoreRange.y));
+                break;
+        }
     }
 
     /// <summary> 스킬로 맞췄을 때: 점수만 추가 (이미지 없음) </summary>
     public void OnSkillScoreOnly()
-        => ModifyScore(Random.Range((int)skillScoreRange.x, (int)skillScoreRange.y));
+    {
+        ModifyScore(Random.Range((int)skillScoreRange.x, (int)skillScoreRange.y));
+    }
 
-    /// <summary> CutLine 통과 시: 점수만 차감 (이미지 없음) </summary>
+    /// <summary> 판정선 통과 시: 점수만 차감 (이미지 없음) </summary>
     public void OnMissScoreOnly()
-        => ModifyScore(Random.Range((int)missScoreRange.x, (int)missScoreRange.y));
+    {
+        ModifyScore(Random.Range((int)missScoreRange.x, (int)missScoreRange.y));
+    }
 
     private void ModifyScore(int delta)
     {
