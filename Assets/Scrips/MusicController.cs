@@ -10,16 +10,16 @@ public class MusicController : MonoBehaviour
     {
         if (audioSource.isPlaying)
         {
-            audioSource.Pause();
+            audioSource.Pause(); //∏ÿ√„
         }
         else
         {
-            audioSource.Play();  
+            audioSource.Play();  //Ω√¿€
         }
     }
 
     public void ToggleSFX(bool isOn)
     {
-        sfxSource.mute = !isOn;
+        sfxSource.mute = !isOn; //»ø∞˙¿Ω ø¬
     }
 }
