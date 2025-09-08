@@ -4,7 +4,7 @@ using static MapCreator; // 맵 데이터 구조 직접 사용
 
 public class NoteSpawner : MonoBehaviour
 {
-    [Header("리듬 관련 세팅")]
+    [Header("맵 및 사운드")]
     public AudioSource musicSource;
     public string mapName = "Go_On"; // Resources/Maps/Go_On.json
 
