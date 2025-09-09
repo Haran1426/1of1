@@ -8,7 +8,7 @@ public class MapCreator : MonoBehaviour
     public class NoteData
     {
         public float time;
-        public string type; // ¿¹: "R", "RG", "RGB"
+        public string type; //"R", "RG", "RGB"
     }
 
     [System.Serializable]
