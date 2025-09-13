@@ -1,53 +1,26 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
 public class ParallaxBackground_Type01 : MonoBehaviour
 {
-    [SerializeField] private Transform target;          // ì´ì–´ì§ˆ ë°˜ëŒ€ íƒ€ì¼(ì§)
-    [SerializeField] private float scrollAmount;        // ë‘ íƒ€ì¼ ê°„ ê°„ê²©(= ìŠ¤í”„ë¼ì´íŠ¸ ì‹¤ì œ í­). 0ì´ë©´ ìë™ ê³„ì‚°
-    [SerializeField] private float moveSpeed = 3f;      // ì´ë™ ì†ë„(ê¸°ë³¸ 3)
-    [SerializeField] private Vector3 moveDirection = Vector3.left; // ì´ë™ ë°©í–¥(ê¸°ë³¸ ì™¼ìª½)
+	[SerializeField]
+	private	Transform	target;				// ÇöÀç ¹è°æ°ú ÀÌ¾îÁö´Â ¹è°æ
+	[SerializeField]
+	private	float		scrollAmount;		// ÀÌ¾îÁö´Â µÎ ¹è°æ »çÀÌÀÇ °Å¸®
+	[SerializeField]
+	private	float		moveSpeed;			// ÀÌµ¿ ¼Óµµ
+	[SerializeField]
+	private	Vector3		moveDirection;		// ÀÌµ¿ ¹æÇâ
 
-    private SpriteRenderer sr;
+	private void Update()
+	{
+		// ¹è°æÀÌ moveDirection ¹æÇâÀ¸·Î moveSpeedÀÇ ¼Óµµ·Î ÀÌµ¿
+		transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-    private void Awake()
-    {
-        // (L15~20) scrollAmount ìë™ ê³„ì‚°: ê°’ì´ 0 ì´í•˜ì´ë©´ SpriteRenderer.boundsë¡œ í­ ì‚°ì¶œ(ìŠ¤ì¼€ì¼ í¬í•¨)
-        if (scrollAmount <= 0f)
-        {
-            sr = GetComponent<SpriteRenderer>();
-            if (sr != null)
-                scrollAmount = sr.bounds.size.x; // ìŠ¤í”„ë¼ì´íŠ¸ ì‹¤ì œ í­(ìŠ¤ì¼€ì¼ í¬í•¨)
-        }
-
-        // (L23~24) ë°©í–¥ ì •ê·œí™”: ì†ë„ ì•ˆì •í™”
-        if (moveDirection.sqrMagnitude > 0f)
-            moveDirection = moveDirection.normalized;
-    }
-
-    private void Update()
-    {
-        // (L30) ë°°ê²½ ì´ë™
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-        // (L33) ì•ˆì „ì¥ì¹˜: Target ë¯¸ì§€ì • ì‹œ ë°˜í™˜
-        if (target == null) return;
-
-        // (L36~47) ë˜í•‘(ë¬´í•œ ìŠ¤í¬ë¡¤) â€” í•­ìƒ "Target ê¸°ì¤€"ìœ¼ë¡œ íŒë‹¨
-        if (Mathf.Abs(moveDirection.x) > 0.0001f)
-        {
-            if (moveDirection.x < 0f) // ì™¼ìª½ ì´ë™
-            {
-                if (transform.position.x <= target.position.x - scrollAmount)
-                    transform.position = target.position + Vector3.right * scrollAmount;
-            }
-            else // ì˜¤ë¥¸ìª½ ì´ë™
-            {
-                if (transform.position.x >= target.position.x + scrollAmount)
-                    transform.position = target.position - Vector3.right * scrollAmount;
-            }
-        }
-
-        // (L51) í•„ìš” ì‹œ Yì¶•(ì„¸ë¡œ ìŠ¤í¬ë¡¤)ë„ ë™ì¼í•œ ë°©ì‹ìœ¼ë¡œ ì¶”ê°€ ê°€ëŠ¥
-        // if (Mathf.Abs(moveDirection.y) > 0.0001f) { ... }
-    }
+		// ¹è°æÀÌ ¼³Á¤µÈ ¹üÀ§¸¦ ¹ş¾î³ª¸é À§Ä¡ Àç¼³Á¤
+		if ( transform.position.x <= -scrollAmount )
+		{
+			transform.position = target.position - moveDirection * scrollAmount;
+		}
+	}
 }
+
