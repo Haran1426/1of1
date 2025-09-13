@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using static MapCreator; // 맵 데이터 구조 직접 사용
+using static MapCreator; // MapData, NoteData 구조 사용
 
 public class NoteSpawner : MonoBehaviour
 {
@@ -51,7 +51,6 @@ public class NoteSpawner : MonoBehaviour
 
     void Update()
     {
-        // 음악 재생 중일 때만 동작
         if (!musicSource.isPlaying || mapData == null) return;
         if (currentNoteIndex >= mapData.notes.Count) return;
 
@@ -70,8 +69,7 @@ public class NoteSpawner : MonoBehaviour
         float distance = spawnX - HitLine.position.x;
         return distance / moveSpeed;
     }
-
-    void SpawnNote(NoteData noteData)
+    void SpawnNote(MapCreator.NoteData noteData)
     {
         if (spawnedObjects.Count >= maxObjects) return;
 
@@ -79,13 +77,13 @@ public class NoteSpawner : MonoBehaviour
         Vector3 spawnPos = new Vector3(spawnX, y, 0f);
         GameObject note = Instantiate(objectPrefab, spawnPos, Quaternion.identity);
 
-        NoteType type = ConvertType(noteData.type);
+        NoteType type = ConvertType(noteData.type); // 문자열 기반
 
         // 스프라이트 설정
         var sr = note.GetComponent<SpriteRenderer>();
         sr.sprite = GetSpriteForType(type);
 
-        // Note 컴포넌트 부착 및 초기화
+        // Note 스크립트 부착
         var noteScript = note.AddComponent<Note>();
         noteScript.noteType = type;
         noteScript.moveSpeed = moveSpeed;
@@ -98,14 +96,6 @@ public class NoteSpawner : MonoBehaviour
         note.tag = "Note";
         spawnedObjects.Add(note);
     }
-
-    // Skill 등 외부에서 호출: 내부 리스트에서 제거
-    public void RemoveFromList(GameObject obj)
-    {
-        if (spawnedObjects.Contains(obj))
-            spawnedObjects.Remove(obj);
-    }
-
     NoteType ConvertType(string type)
     {
         return type switch
@@ -113,10 +103,10 @@ public class NoteSpawner : MonoBehaviour
             "R" => NoteType.Red,
             "G" => NoteType.Green,
             "B" => NoteType.Blue,
-            "RG" => NoteType.Yellow,
-            "RB" => NoteType.Magenta,
-            "GB" => NoteType.Cyan,
-            "RGB" => NoteType.White,
+            "Y" => NoteType.Yellow,
+            "M" => NoteType.Magenta,
+            "C" => NoteType.Cyan,
+            "W" => NoteType.White,
             _ => NoteType.Red,
         };
     }
@@ -134,5 +124,12 @@ public class NoteSpawner : MonoBehaviour
             NoteType.White => whiteNote,
             _ => redNote,
         };
+    }
+
+    // Skill 등 외부에서 호출: 내부 리스트에서 제거
+    public void RemoveFromList(GameObject obj)
+    {
+        if (spawnedObjects.Contains(obj))
+            spawnedObjects.Remove(obj);
     }
 }
