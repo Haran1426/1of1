@@ -1,44 +1,40 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Note_Grid : MonoBehaviour
 {
-    [Header("Grid Settings (·±Å¸ÀÓ¿¡¼­µµ º¯°æ °¡´É)")]
-    public float cellSize = 1f;  // ÇÑ Ä­ Å©±â
-    public int width = 16;       // °¡·Î Ä­ ¼ö
-    public int height = 3;       // ¼¼·Î Ä­ ¼ö
+    public float CellSize = 1f; // í•œ ì¹¸ í¬ê¸°
+    public int Width = 16;      // ê°€ë¡œ ì¹¸ ìˆ˜ (Inspectorì—ì„œ ì¡°ì ˆ ê°€ëŠ¥)
 
+    private const int FixedHeight = 3; // ì„¸ë¡œëŠ” í•­ìƒ 3ì¤„
     private SpriteRenderer renderer;
 
     void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
-        ApplyGridSettings();
+        UpdateGrid();
     }
 
-    /// <summary>
-    /// ¿ÜºÎ¿¡¼­ °î ±æÀÌ/ÆĞÅÏ ³­ÀÌµµ¿¡ µû¶ó Grid Å©±â ¼³Á¤
-    /// </summary>
-    public void SetupGrid(int newWidth, int newHeight, float newCellSize)
+    // âœ… Inspector ê°’ ë°”ê¿€ ë•Œ ìë™ ë°˜ì˜
+    void OnValidate()
     {
-        width = newWidth;
-        height = newHeight;
-        cellSize = newCellSize;
-        ApplyGridSettings();
+        if (renderer == null) renderer = GetComponent<SpriteRenderer>();
+        UpdateGrid();
     }
 
-    private void ApplyGridSettings()
+    private void UpdateGrid()
     {
-        if (renderer != null)
-        {
-            renderer.size = new Vector2(width, height);
-        }
+        if (renderer == null) return;
+        // ì„¸ë¡œëŠ” ê³ ì • 3ì¤„
+        renderer.size = new Vector2(Width, FixedHeight);
     }
 
-    // ¿ùµå ÁÂÇ¥ ¡æ Snap ÁÂÇ¥
-    public Vector3 GetSnappedPosition(Vector3 worldPos)
+    // âœ… ê²©ì ë²”ìœ„ ì•ˆì¸ì§€ ì²´í¬
+    public bool IsInsideGrid(Vector3 pos)
     {
-        float snappedX = Mathf.Round(worldPos.x / cellSize) * cellSize;
-        float snappedY = Mathf.Round(worldPos.y / cellSize) * cellSize;
-        return new Vector3(snappedX, snappedY, 0f);
+        float halfW = Width * 0.5f * CellSize;
+        float halfH = FixedHeight * 0.5f * CellSize;
+
+        return (pos.x >= -halfW && pos.x <= halfW &&
+                pos.y >= -halfH && pos.y <= halfH);
     }
 }

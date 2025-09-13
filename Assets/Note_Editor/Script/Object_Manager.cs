@@ -35,11 +35,24 @@ public class Object_Manager : MonoBehaviour
         note_State = (Note_State)type;
 
         if (type > 0 && type <= noteImgList.Count)
-            pointRender.sprite = noteImgList[type - 1]; // None 제외
+        {
+            pointRender.sprite = noteImgList[type - 1];
+            GameObject prefab = GetSelectedPrefab();
+            if (prefab != null)
+            {
+                var prefabSR = prefab.GetComponent<SpriteRenderer>();
+                if (prefabSR != null)
+                {
+                    pointNote.transform.localScale = prefab.transform.localScale;
+                }
+            }
+        }
         else
+        {
             pointRender.sprite = null;
-        Debug.LogError("s");
+        }
     }
+
 
     void Start()
     {
