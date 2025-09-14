@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8896057875609345009}
-  - component: {fileID: 3846208250016335682}
   - component: {fileID: 4850211089763940398}
   - component: {fileID: -3346318566365112191}
-  - component: {fileID: -687984232384891503}
   - component: {fileID: 7066497507867182124}
   - component: {fileID: -676466589291125768}
   m_Layer: 6
@@ -37,18 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3846208250016335682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931631816242695429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2b2f9378722be44bfd39ca1ac56a64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &4850211089763940398
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -123,23 +109,9 @@ MonoBehaviour:
   visibleNeonSr: {fileID: 4135479245993179692, guid: 6addcd6a3968ea548a140d99248af7ad, type: 3}
   flashTime: 0.12
   flashIntensity: 1
---- !u!114 &-687984232384891503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931631816242695429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: b4b3e031aa66f8b4b96b510efe42e7a5, type: 2}
+  perfectSound: {fileID: 8300000, guid: de26a7e686ae21c4c975c01b4472aa6d, type: 3}
+  hitSound: {fileID: 8300000, guid: de26a7e686ae21c4c975c01b4472aa6d, type: 3}
+  missSound: {fileID: 0}
 --- !u!61 &7066497507867182124
 BoxCollider2D:
   m_ObjectHideFlags: 0
