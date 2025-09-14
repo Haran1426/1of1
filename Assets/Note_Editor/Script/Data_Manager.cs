@@ -20,6 +20,9 @@ public class Data_Manager : MonoBehaviour
     public NoteDataList noteDataList = new NoteDataList();
     public GameObject[] notePrefabList;
 
+    [Header("저장 파일 이름")]
+    public string saveFileName = "MapData.json";  // 🔥 여기 추가!
+
     public void AddNote(int type, float x, float y)
     {
         NoteData data = new NoteData { type = type, posX = x, posY = y };
