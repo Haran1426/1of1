@@ -2231,7 +2231,7 @@ MonoBehaviour:
   fpsText: {fileID: 1549435850}
   resolutionDropdown: {fileID: 1675645658}
   fakeLoadingDuration: 2
-  nextSceneName: Game
+  nextSceneName: Or
 --- !u!1 &730701252
 GameObject:
   m_ObjectHideFlags: 0

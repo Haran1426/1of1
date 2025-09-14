@@ -1,16 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
-
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class NoteData
 {
-    public int type;   // 노트 타입 
-    public float posX; // 노트 X좌표
-    public float posY; // 노트 Y좌표
-    public float bpm;  // 해당 노트의 BPM
-    public float distance; // 곡 진행 거리(시간 기반 계산용)
+    public int type;
+    public float posX;
+    public float posY;
 }
 
 [System.Serializable]
@@ -21,48 +17,33 @@ public class NoteDataList
 
 public class Data_Manager : MonoBehaviour
 {
-    [Header("파일 이름 (확장자 제외)")]
-    [SerializeField] private string fileName = "NoteData";
-
-    private string FilePath => Path.Combine(Application.persistentDataPath, fileName + ".json");
-
     public NoteDataList noteDataList = new NoteDataList();
+    public GameObject[] notePrefabList;
 
-    // 저장하기
-    public void SaveData()
+    public void AddNote(int type, float x, float y)
     {
-        string json = JsonUtility.ToJson(noteDataList, true);
-        File.WriteAllText(FilePath, json);
-        Debug.Log($"노트 데이터 저장 완료: {FilePath}");
-    }
+        NoteData data = new NoteData { type = type, posX = x, posY = y };
+        noteDataList.notes.Add(data);
 
-    //불러오기
-    public void LoadData()
-    {
-        if (!File.Exists(FilePath))
+        if (type > 0 && type <= notePrefabList.Length)
         {
-            Debug.LogWarning("저장된 노트 파일 없음");
-            return;
+            GameObject obj = Instantiate(notePrefabList[type - 1], new Vector3(x, y, 0), Quaternion.identity);
+            obj.tag = "Note";
         }
-
-        string json = File.ReadAllText(FilePath);
-        noteDataList = JsonUtility.FromJson<NoteDataList>(json);
-        Debug.Log($"노트 데이터 불러오기 완료: {FilePath}, 개수: {noteDataList.notes.Count}");
+        else
+        {
+            Debug.LogError($"잘못된 노트 타입: {type}, 프리팹 리스트 길이: {notePrefabList.Length}");
+        }
     }
 
-    // ✅ DataList에 노트 추가
-    public void AddNoteData(int type, Vector3 pos, float bpm, float distance)
+    public bool ExistsNoteAtPosition(Vector3 pos)
     {
-        NoteData newNote = new NoteData
+        foreach (var note in noteDataList.notes)
         {
-            type = type,
-            posX = pos.x,
-            posY = pos.y,
-            bpm = bpm,
-            distance = distance
-        };
-
-        noteDataList.notes.Add(newNote);
-        Debug.Log($"노트 추가: 타입={type}, 위치={pos}");
+            if (Mathf.Approximately(note.posX, pos.x) &&
+                Mathf.Approximately(note.posY, pos.y))
+                return true;
+        }
+        return false;
     }
 }

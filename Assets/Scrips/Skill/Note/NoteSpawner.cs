@@ -125,8 +125,6 @@ public class NoteSpawner : MonoBehaviour
             _ => redNote,
         };
     }
-
-    // Skill 등 외부에서 호출: 내부 리스트에서 제거
     public void RemoveFromList(GameObject obj)
     {
         if (spawnedObjects.Contains(obj))
