@@ -3,12 +3,12 @@
 [RequireComponent(typeof(SpriteRenderer))]
 public class Note_Grid : MonoBehaviour
 {
-    public float cellSize = 1f;   // 가로 칸 크기
-    public int width = 16;        // 가로 칸 수
+    public float cellSize = 1f;
+    [SerializeField, HideInInspector] private int width = 0;
 
     private SpriteRenderer sr;
 
-    // 세로는 위/중앙/아래 3줄 고정
+    // 세로 고정 (위, 중앙, 아래)
     private float[] allowedY;
 
     void Awake()
@@ -16,29 +16,29 @@ public class Note_Grid : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         UpdateGrid();
 
-        // 세로 라인 위치 = 선 위치
         allowedY = new float[]
         {
-            cellSize,   // 맨 위 선
-            0f,         // 중앙 선
-            -cellSize   // 맨 아래 선
+            cellSize,   // 위
+            0f,         // 가운데
+            -cellSize   // 아래
         };
-    }
-
-    void OnValidate()
-    {
-        if (sr == null) sr = GetComponent<SpriteRenderer>();
-        UpdateGrid();
     }
 
     private void UpdateGrid()
     {
         if (sr == null) return;
-        // 높이를 2칸으로 고정 (위, 중앙, 아래 선 표현)
         sr.size = new Vector2(width, 2f);
     }
 
-    // 격자 범위 체크
+    public void SetWidth(int newWidth)
+    {
+        width = Mathf.Max(0, newWidth);
+        UpdateGrid();
+    }
+
+    public int GetWidth() => width;
+
+    // ✅ NotePlacer.cs에서 쓰는 함수들 다시 추가
     public bool IsInsideGrid(Vector3 pos)
     {
         float halfW = width * 0.5f * cellSize;
@@ -47,32 +47,23 @@ public class Note_Grid : MonoBehaviour
 
     public Vector3 GetSnappedPosition(Vector3 worldPos)
     {
-        float snappedX = GetSnappedX(worldPos.x); // 가로: 반칸 단위
-        float snappedY = GetSnappedY(worldPos.y); // 세로: 3줄 고정
-        return new Vector3(snappedX, snappedY, 0f);
-    }
-    private float GetSnappedX(float x)
-    {
-        float halfCell = cellSize * 0.5f;
-        return Mathf.Round(x / halfCell) * halfCell;
-    }
-    private float GetSnappedY(float y)
-    {
-        // allowedY = { +cellSize, 0, -cellSize }
-        float snappedY = allowedY[0];
-        float minDist = Mathf.Abs(y - allowedY[0]);
+        // X축: 반칸 단위로 스냅
+        float snappedX = Mathf.Round(worldPos.x / (cellSize * 0.5f)) * (cellSize * 0.5f);
 
-        foreach (float line in allowedY)
+        // Y축: allowedY 중 가장 가까운 값 선택
+        float snappedY = allowedY[0];
+        float minDist = Mathf.Abs(worldPos.y - allowedY[0]);
+
+        foreach (float y in allowedY)
         {
-            float dist = Mathf.Abs(y - line);
+            float dist = Mathf.Abs(worldPos.y - y);
             if (dist < minDist)
             {
                 minDist = dist;
-                snappedY = line;
+                snappedY = y;
             }
         }
-        return snappedY;
+
+        return new Vector3(snappedX, snappedY, 0f);
     }
-
-
 }
