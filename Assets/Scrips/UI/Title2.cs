@@ -6,11 +6,15 @@ public class Title2 : MonoBehaviour
     // 버튼 이벤트 연결용
     public void LoadChoiceScene()
     {
-        SceneManager.LoadScene("Choice");
+        SceneFader.FadeToScene("Choice");
     }
 
     public void LoadEditorScene()
     {
-        SceneManager.LoadScene("Editor");
+        SceneFader.FadeToScene("Editor");
+    }
+    public void LoadOrScene()
+    {
+        SceneFader.FadeToScene("Or");
     }
 }

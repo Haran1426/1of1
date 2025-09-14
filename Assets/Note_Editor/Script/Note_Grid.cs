@@ -3,12 +3,12 @@
 [RequireComponent(typeof(SpriteRenderer))]
 public class Note_Grid : MonoBehaviour
 {
-    public float cellSize = 1f;
-    [SerializeField, HideInInspector] private int width = 0;
+    public float cellSize = 1f;   // 칸 크기
+    private int width = 0;        // ✅ Inspector에 노출 안 함 (UI 전용)
 
     private SpriteRenderer sr;
 
-    // 세로 고정 (위, 중앙, 아래)
+    // 세로는 3줄 고정 (위/중앙/아래)
     private float[] allowedY;
 
     void Awake()
@@ -19,7 +19,7 @@ public class Note_Grid : MonoBehaviour
         allowedY = new float[]
         {
             cellSize,   // 위
-            0f,         // 가운데
+            0f,         // 중앙
             -cellSize   // 아래
         };
     }
@@ -27,18 +27,16 @@ public class Note_Grid : MonoBehaviour
     private void UpdateGrid()
     {
         if (sr == null) return;
-        sr.size = new Vector2(width, 2f);
+        sr.size = new Vector2(width, 2f); // 세로는 2 고정
     }
 
+    // ✅ UI에서만 호출
     public void SetWidth(int newWidth)
     {
         width = Mathf.Max(0, newWidth);
         UpdateGrid();
     }
 
-    public int GetWidth() => width;
-
-    // ✅ NotePlacer.cs에서 쓰는 함수들 다시 추가
     public bool IsInsideGrid(Vector3 pos)
     {
         float halfW = width * 0.5f * cellSize;
@@ -47,10 +45,8 @@ public class Note_Grid : MonoBehaviour
 
     public Vector3 GetSnappedPosition(Vector3 worldPos)
     {
-        // X축: 반칸 단위로 스냅
         float snappedX = Mathf.Round(worldPos.x / (cellSize * 0.5f)) * (cellSize * 0.5f);
 
-        // Y축: allowedY 중 가장 가까운 값 선택
         float snappedY = allowedY[0];
         float minDist = Mathf.Abs(worldPos.y - allowedY[0]);
 
