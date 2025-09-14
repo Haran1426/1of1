@@ -1,4 +1,3 @@
-// InGameUIManager.cs
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -82,7 +81,6 @@ public class InGameUIManager : MonoBehaviour
                 break;
 
             case JudgementType.Miss:
-                // Miss 는 이 메서드로만 점수 차감
                 ModifyScore(Random.Range((int)missScoreRange.x, (int)missScoreRange.y));
                 break;
         }

@@ -5,7 +5,7 @@ public class NoteSpawner : MonoBehaviour
 {
     [Header("맵 및 사운드")]
     public AudioSource musicSource;
-    public string mapName = "2000"; // Resources/Maps/MapData.json
+    public string mapName = "2000_balanced_spaced_v4"; // Resources/Maps/MapData.json
 
     [Header("노트 설정")]
     public GameObject objectPrefab;

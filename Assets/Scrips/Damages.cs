@@ -2,23 +2,26 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
+    [SerializeField] private int damage = 20;
     private Player player;
 
     private void Start()
     {
-        // 씬에 있는 Player 컴포넌트 찾기
         player = FindObjectOfType<Player>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("Note"))
+        Debug.Log("[CutLine] 충돌: " + other.name);
+
+        if (other.CompareTag("Note"))
         {
             if (player != null)
             {
-                player.Damage(20);
+                player.Damage(damage);
+                Debug.Log("[CutLine] HP 감소 → " + damage);
             }
-            Destroy(collision.gameObject); // 노트 제거
+            Destroy(other.gameObject);
         }
     }
 }

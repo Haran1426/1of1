@@ -5,9 +5,9 @@ public class NoteInputHandler : MonoBehaviour
     [Header("판정 존 X 위치")]
     [SerializeField] private float hitZoneX = -4.3f;
     [Header("일반 히트 범위")]
-    [SerializeField] private float hitRange = 0.3f;
+    [SerializeField] private float hitRange = 0.5f;
     [Header("퍼펙트 히트 범위")]
-    [SerializeField] private float perfectRange = 0.1f;
+    [SerializeField] private float perfectRange = 0.2f;
 
     void Update()
     {

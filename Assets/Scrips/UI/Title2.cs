@@ -17,4 +17,8 @@ public class Title2 : MonoBehaviour
     {
         SceneFader.FadeToScene("Or");
     }
+    public void LoadTitleScene()
+    {
+        SceneFader.FadeToScene("Title");
+    }
 }

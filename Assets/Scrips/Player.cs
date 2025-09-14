@@ -1,64 +1,51 @@
-using UnityEngine;
-using UnityEngine.UI;  // HP¹Ù UI »ç¿ë
+ï»¿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    // Ã¼·Â °ü·Ã
+    // ===== HP ê´€ë ¨ =====
     private int HP;
     private int maxHP = 100;
 
-    // HP¹Ù UI
-    [SerializeField] private Slider hpSlider;
+    [SerializeField] private Slider hpSlider;   // HPë°” UI
+    [SerializeField] private GameObject gameOverPanel; // ğŸ†• ê²Œì„ì˜¤ë²„ íŒ¨ë„
 
-    // ¾Ö´Ï¸ŞÀÌÅÍ
+    // ===== ì• ë‹ˆë©”ì´ì…˜ ê´€ë ¨ =====
     private Animator animator;
-
-    // °ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç »óÅÂ ÇÃ·¡±×
     private bool isAttacking = false;
     private bool attackQueued = false;
 
     private void Start()
     {
-        // ÃÊ±â Ã¼·Â ¼¼ÆÃ
         HP = maxHP;
-
         animator = GetComponent<Animator>();
 
-        // HP¹Ù ÃÊ±âÈ­
         if (hpSlider != null)
         {
+            hpSlider.minValue = 0;
             hpSlider.maxValue = maxHP;
             hpSlider.value = HP;
         }
+
+        // ì‹œì‘í•  ë• íŒ¨ë„ ìˆ¨ê¹€
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(false);
     }
 
     private void Update()
     {
-        // ÇÃ·¹ÀÌ¾îÀÇ X À§Ä¡ °íÁ¤ (-4.3f)
+        // X ìœ„ì¹˜ ê³ ì •
         transform.position = new Vector3(-4.3f, transform.position.y, transform.position.z);
 
-        // --------------------
-        // ¶óÀÎ ÀÌµ¿ (P/K/M)
-        // --------------------
+        // ë¼ì¸ ì´ë™ (P/K/M)
         if (Input.GetKeyDown(KeyCode.P))
-        {
-            // »ó´Ü ¶óÀÎ
             transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
-        }
         else if (Input.GetKeyDown(KeyCode.K))
-        {
-            // Áß´Ü ¶óÀÎ
             transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-        }
         else if (Input.GetKeyDown(KeyCode.M))
-        {
-            // ÇÏ´Ü ¶óÀÎ
             transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
-        }
 
-        // --------------------
-        // RGB °ø°İ
-        // --------------------
+        // RGB ê³µê²©
         if (Input.GetKeyDown(KeyCode.R) ||
             Input.GetKeyDown(KeyCode.G) ||
             Input.GetKeyDown(KeyCode.B))
@@ -66,11 +53,8 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Attack");
         }
 
-        // --------------------
-        // ½ºÆäÀÌ½º ÄŞº¸ °ø°İ
-        // --------------------
+        // ìŠ¤í˜ì´ìŠ¤ ì½¤ë³´ ê³µê²©
         AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isAttacking)
@@ -80,12 +64,10 @@ public class Player : MonoBehaviour
             }
             else
             {
-                // ÇöÀç °ø°İ Áß ¡æ ´ÙÀ½ °ø°İ ¿¹¾à
                 attackQueued = true;
             }
         }
 
-        // idle »óÅÂ·Î µ¹¾Æ¿À¸é ÄŞº¸ Ã³¸®
         if (isAttacking && state.IsName("idle"))
         {
             if (attackQueued)
@@ -100,25 +82,31 @@ public class Player : MonoBehaviour
         }
     }
 
-    // --------------------
-    // µ¥¹ÌÁö Ã³¸®
-    // --------------------
+    // ===== ë°ë¯¸ì§€ ì²˜ë¦¬ =====
     public void Damage(int amount)
     {
         HP -= amount;
-        Debug.Log("ÇÃ·¹ÀÌ¾î HP: " + HP);
+        if (HP < 0) HP = 0;
 
-        // HP¹Ù °»½Å
+        Debug.Log("í”Œë ˆì´ì–´ HP: " + HP);
+
         if (hpSlider != null)
-        {
             hpSlider.value = HP;
-        }
 
-        // »ç¸Á Ã³¸®
         if (HP <= 0)
         {
-            Debug.Log("»ç¸Á");
-            // TODO: °ÔÀÓ¿À¹ö ·ÎÁ÷ ³ÖÀ» ÀÚ¸®
+            Debug.Log("ì‚¬ë§");
+            ShowGameOverPanel(); // ğŸ†• íŒ¨ë„ í‘œì‹œ
         }
     }
+
+    private void ShowGameOverPanel()
+    {
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
+
+        // ê²Œì„ ë©ˆì¶”ê¸°
+        Time.timeScale = 0f;
+    }
+
 }
