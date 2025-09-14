@@ -25,12 +25,12 @@ public class Object_Manager : MonoBehaviour
     /// <summary> 현재 선택된 Prefab 반환 </summary>
     public GameObject GetSelectedPrefab()
     {
-        if (note_State == Note_State.None) return null;
-        int index = (int)note_State - 1;
+        int index = (int)note_State;
         if (index >= 0 && index < notePrefabList.Length)
             return notePrefabList[index];
         return null;
     }
+
 
     /// <summary> UI 버튼에서 호출 (Inspector에서 OnClick 연결) </summary>
     public void Select_Note(int type)

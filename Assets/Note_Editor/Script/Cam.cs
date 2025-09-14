@@ -8,6 +8,9 @@ public class Cam : MonoBehaviour
     private Camera cam;
     private float Cam_Scale;
 
+    // ✅ 마우스 드래그 시작 위치
+    private Vector3 dragOrigin;
+
     void Start()
     {
         cam = GetComponent<Camera>();
@@ -40,9 +43,17 @@ public class Cam : MonoBehaviour
 
     void Cam_Move()
     {
-        if (Input.GetMouseButtonDown(1))
+        // 마우스 휠 버튼 눌렀을 때 시작 지점 기록
+        if (Input.GetMouseButtonDown(2))  // 2 = 휠 버튼
         {
-            //start_Point = 
+            dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        // 마우스 휠 버튼을 누르고 있을 때 카메라 이동
+        if (Input.GetMouseButton(2))
+        {
+            Vector3 difference = dragOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
+            cam.transform.position += difference;
         }
     }
 
