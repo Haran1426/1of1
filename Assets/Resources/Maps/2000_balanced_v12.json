@@ -1,0 +1,1238 @@
+{
+    "songName": "Song (online-audio-converter.com).mp3",
+    "bpm": 118.0,
+    "notes": [
+        {
+            "type": 1,
+            "posX": -425.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 0.0
+        },
+        {
+            "type": 4,
+            "posX": -413.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 0.57
+        },
+        {
+            "type": 5,
+            "posX": -411.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 2.07
+        },
+        {
+            "type": 6,
+            "posX": -408.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 3.57
+        },
+        {
+            "type": 7,
+            "posX": -405.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 5.07
+        },
+        {
+            "type": 1,
+            "posX": -401.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 6.57
+        },
+        {
+            "type": 2,
+            "posX": -398.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 8.07
+        },
+        {
+            "type": 3,
+            "posX": -394.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 9.57
+        },
+        {
+            "type": 4,
+            "posX": -391.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 11.07
+        },
+        {
+            "type": 7,
+            "posX": -382.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 15.57
+        },
+        {
+            "type": 7,
+            "posX": -358.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 16.0
+        },
+        {
+            "type": 1,
+            "posX": -356.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 16.8
+        },
+        {
+            "type": 1,
+            "posX": -379.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 17.07
+        },
+        {
+            "type": 2,
+            "posX": -352.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 17.6
+        },
+        {
+            "type": 3,
+            "posX": -348.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 18.4
+        },
+        {
+            "type": 2,
+            "posX": -375.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 18.57
+        },
+        {
+            "type": 4,
+            "posX": -344.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 19.2
+        },
+        {
+            "type": 5,
+            "posX": -340.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 20.0
+        },
+        {
+            "type": 3,
+            "posX": -371.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 20.07
+        },
+        {
+            "type": 6,
+            "posX": -337.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 20.8
+        },
+        {
+            "type": 4,
+            "posX": -369.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 21.57
+        },
+        {
+            "type": 7,
+            "posX": -333.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 21.6
+        },
+        {
+            "type": 1,
+            "posX": -330.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 22.4
+        },
+        {
+            "type": 5,
+            "posX": -366.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 23.07
+        },
+        {
+            "type": 2,
+            "posX": -326.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 23.2
+        },
+        {
+            "type": 6,
+            "posX": -362.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 24.57
+        },
+        {
+            "type": 3,
+            "posX": -322.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 26.07
+        },
+        {
+            "type": 4,
+            "posX": -319.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 27.07
+        },
+        {
+            "type": 5,
+            "posX": -316.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 28.07
+        },
+        {
+            "type": 6,
+            "posX": -313.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 29.07
+        },
+        {
+            "type": 7,
+            "posX": -310.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 30.07
+        },
+        {
+            "type": 1,
+            "posX": -306.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 31.07
+        },
+        {
+            "type": 2,
+            "posX": -302.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 32.07
+        },
+        {
+            "type": 3,
+            "posX": -298.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 33.07
+        },
+        {
+            "type": 4,
+            "posX": -294.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 34.07
+        },
+        {
+            "type": 5,
+            "posX": -291.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 35.07
+        },
+        {
+            "type": 6,
+            "posX": -287.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 36.07
+        },
+        {
+            "type": 7,
+            "posX": -283.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 37.07
+        },
+        {
+            "type": 1,
+            "posX": -280.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 38.07
+        },
+        {
+            "type": 2,
+            "posX": -278.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 39.07
+        },
+        {
+            "type": 3,
+            "posX": -275.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 40.07
+        },
+        {
+            "type": 4,
+            "posX": -272.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 41.07
+        },
+        {
+            "type": 5,
+            "posX": -269.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 42.07
+        },
+        {
+            "type": 6,
+            "posX": -265.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 43.07
+        },
+        {
+            "type": 7,
+            "posX": -262.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 44.07
+        },
+        {
+            "type": 1,
+            "posX": -259.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 45.07
+        },
+        {
+            "type": 2,
+            "posX": -256.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 46.07
+        },
+        {
+            "type": 3,
+            "posX": -254.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 47.07
+        },
+        {
+            "type": 4,
+            "posX": -250.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 48.07
+        },
+        {
+            "type": 5,
+            "posX": -247.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 49.07
+        },
+        {
+            "type": 6,
+            "posX": -243.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 50.07
+        },
+        {
+            "type": 7,
+            "posX": -240.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 51.07
+        },
+        {
+            "type": 1,
+            "posX": -236.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 52.07
+        },
+        {
+            "type": 2,
+            "posX": -233.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 53.07
+        },
+        {
+            "type": 3,
+            "posX": -230.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 54.07
+        },
+        {
+            "type": 4,
+            "posX": -228.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 55.07
+        },
+        {
+            "type": 5,
+            "posX": -224.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 56.07
+        },
+        {
+            "type": 6,
+            "posX": -221.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 57.07
+        },
+        {
+            "type": 7,
+            "posX": -218.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 58.07
+        },
+        {
+            "type": 1,
+            "posX": -215.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 59.07
+        },
+        {
+            "type": 2,
+            "posX": -211.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 60.07
+        },
+        {
+            "type": 3,
+            "posX": -209.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 61.07
+        },
+        {
+            "type": 4,
+            "posX": -205.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 62.07
+        },
+        {
+            "type": 5,
+            "posX": -203.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 63.07
+        },
+        {
+            "type": 6,
+            "posX": -200.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 64.07
+        },
+        {
+            "type": 7,
+            "posX": -196.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 65.07
+        },
+        {
+            "type": 1,
+            "posX": -192.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 66.07
+        },
+        {
+            "type": 2,
+            "posX": -190.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 67.07
+        },
+        {
+            "type": 3,
+            "posX": -187.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 68.07
+        },
+        {
+            "type": 4,
+            "posX": -185.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 69.07
+        },
+        {
+            "type": 5,
+            "posX": -181.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 70.07
+        },
+        {
+            "type": 6,
+            "posX": -177.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 71.07
+        },
+        {
+            "type": 7,
+            "posX": -174.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 72.07
+        },
+        {
+            "type": 1,
+            "posX": -170.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 73.07
+        },
+        {
+            "type": 2,
+            "posX": -166.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 74.07
+        },
+        {
+            "type": 3,
+            "posX": -164.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 75.07
+        },
+        {
+            "type": 4,
+            "posX": -160.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 76.07
+        },
+        {
+            "type": 5,
+            "posX": -156.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 77.07
+        },
+        {
+            "type": 6,
+            "posX": -152.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 78.07
+        },
+        {
+            "type": 7,
+            "posX": -149.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 79.07
+        },
+        {
+            "type": 1,
+            "posX": -146.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 80.07
+        },
+        {
+            "type": 2,
+            "posX": -144.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 81.07
+        },
+        {
+            "type": 3,
+            "posX": -141.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 82.07
+        },
+        {
+            "type": 4,
+            "posX": -138.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 83.07
+        },
+        {
+            "type": 5,
+            "posX": -134.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 84.07
+        },
+        {
+            "type": 6,
+            "posX": -131.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 85.07
+        },
+        {
+            "type": 7,
+            "posX": -128.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 86.07
+        },
+        {
+            "type": 1,
+            "posX": -124.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 87.07
+        },
+        {
+            "type": 2,
+            "posX": -122.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 88.07
+        },
+        {
+            "type": 3,
+            "posX": -119.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 89.07
+        },
+        {
+            "type": 4,
+            "posX": -115.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 90.07
+        },
+        {
+            "type": 5,
+            "posX": -112.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 91.07
+        },
+        {
+            "type": 6,
+            "posX": -109.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 92.07
+        },
+        {
+            "type": 7,
+            "posX": -106.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 93.07
+        },
+        {
+            "type": 1,
+            "posX": -104.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 94.07
+        },
+        {
+            "type": 2,
+            "posX": -100.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 95.07
+        },
+        {
+            "type": 3,
+            "posX": -96.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 96.07
+        },
+        {
+            "type": 4,
+            "posX": -94.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 97.07
+        },
+        {
+            "type": 5,
+            "posX": -91.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 98.07
+        },
+        {
+            "type": 6,
+            "posX": -87.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 99.07
+        },
+        {
+            "type": 7,
+            "posX": -83.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 100.07
+        },
+        {
+            "type": 1,
+            "posX": -79.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 101.07
+        },
+        {
+            "type": 2,
+            "posX": -77.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 102.07
+        },
+        {
+            "type": 3,
+            "posX": -73.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 103.07
+        },
+        {
+            "type": 4,
+            "posX": -71.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 104.07
+        },
+        {
+            "type": 5,
+            "posX": -68.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 105.07
+        },
+        {
+            "type": 6,
+            "posX": -65.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 106.07
+        },
+        {
+            "type": 7,
+            "posX": -63.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 107.07
+        },
+        {
+            "type": 1,
+            "posX": -60.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 108.07
+        },
+        {
+            "type": 2,
+            "posX": -57.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 109.07
+        },
+        {
+            "type": 3,
+            "posX": -55.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 110.07
+        },
+        {
+            "type": 4,
+            "posX": -51.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 111.07
+        },
+        {
+            "type": 5,
+            "posX": -48.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 112.07
+        },
+        {
+            "type": 6,
+            "posX": -45.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 113.07
+        },
+        {
+            "type": 7,
+            "posX": -42.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 114.07
+        },
+        {
+            "type": 1,
+            "posX": -39.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 115.07
+        },
+        {
+            "type": 2,
+            "posX": -37.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 116.07
+        },
+        {
+            "type": 3,
+            "posX": -33.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 117.07
+        },
+        {
+            "type": 4,
+            "posX": -30.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 118.07
+        },
+        {
+            "type": 5,
+            "posX": -28.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 119.07
+        },
+        {
+            "type": 6,
+            "posX": -24.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 120.07
+        },
+        {
+            "type": 7,
+            "posX": -21.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 121.07
+        },
+        {
+            "type": 1,
+            "posX": -18.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 122.07
+        },
+        {
+            "type": 2,
+            "posX": -15.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 123.07
+        },
+        {
+            "type": 3,
+            "posX": -13.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 124.07
+        },
+        {
+            "type": 4,
+            "posX": -9.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 125.07
+        },
+        {
+            "type": 5,
+            "posX": -5.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 126.07
+        },
+        {
+            "type": 6,
+            "posX": -1.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 127.07
+        },
+        {
+            "type": 7,
+            "posX": 2.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 128.07
+        },
+        {
+            "type": 1,
+            "posX": 5.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 129.07
+        },
+        {
+            "type": 2,
+            "posX": 9.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 130.07
+        },
+        {
+            "type": 3,
+            "posX": 11.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 131.07
+        },
+        {
+            "type": 4,
+            "posX": 14.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 132.07
+        },
+        {
+            "type": 5,
+            "posX": 17.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 133.07
+        },
+        {
+            "type": 6,
+            "posX": 21.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 134.07
+        },
+        {
+            "type": 7,
+            "posX": 25.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 135.07
+        },
+        {
+            "type": 1,
+            "posX": 28.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 136.07
+        },
+        {
+            "type": 2,
+            "posX": 31.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 137.07
+        },
+        {
+            "type": 3,
+            "posX": 35.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 138.07
+        },
+        {
+            "type": 4,
+            "posX": 38.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 139.07
+        },
+        {
+            "type": 5,
+            "posX": 41.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 140.07
+        },
+        {
+            "type": 6,
+            "posX": 44.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 141.07
+        },
+        {
+            "type": 7,
+            "posX": 48.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 142.07
+        },
+        {
+            "type": 1,
+            "posX": 50.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 143.07
+        },
+        {
+            "type": 2,
+            "posX": 54.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 144.07
+        },
+        {
+            "type": 3,
+            "posX": 57.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 145.07
+        },
+        {
+            "type": 4,
+            "posX": 60.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 146.07
+        },
+        {
+            "type": 5,
+            "posX": 63.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 147.07
+        },
+        {
+            "type": 6,
+            "posX": 67.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 148.07
+        },
+        {
+            "type": 7,
+            "posX": 70.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 149.07
+        },
+        {
+            "type": 1,
+            "posX": 72.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 150.07
+        },
+        {
+            "type": 2,
+            "posX": 75.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 151.07
+        },
+        {
+            "type": 3,
+            "posX": 78.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 152.07
+        },
+        {
+            "type": 4,
+            "posX": 82.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 153.07
+        },
+        {
+            "type": 5,
+            "posX": 84.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 154.07
+        },
+        {
+            "type": 6,
+            "posX": 87.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 155.07
+        },
+        {
+            "type": 7,
+            "posX": 90.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 156.07
+        },
+        {
+            "type": 1,
+            "posX": 93.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 157.07
+        },
+        {
+            "type": 2,
+            "posX": 96.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 158.07
+        },
+        {
+            "type": 3,
+            "posX": 100.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 159.07
+        },
+        {
+            "type": 4,
+            "posX": 104.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 160.07
+        },
+        {
+            "type": 5,
+            "posX": 107.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 161.07
+        },
+        {
+            "type": 6,
+            "posX": 109.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 162.07
+        },
+        {
+            "type": 7,
+            "posX": 112.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 163.07
+        },
+        {
+            "type": 1,
+            "posX": 115.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 164.07
+        },
+        {
+            "type": 2,
+            "posX": 118.5,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 165.07
+        },
+        {
+            "type": 3,
+            "posX": 122.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 166.07
+        },
+        {
+            "type": 4,
+            "posX": 125.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 167.07
+        },
+        {
+            "type": 5,
+            "posX": 128.0,
+            "posY": -1.0,
+            "distance": 3.0,
+            "beat": 168.07
+        },
+        {
+            "type": 6,
+            "posX": 130.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 169.07
+        },
+        {
+            "type": 7,
+            "posX": 133.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 170.07
+        },
+        {
+            "type": 1,
+            "posX": 136.5,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 171.07
+        },
+        {
+            "type": 2,
+            "posX": 139.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 172.07
+        },
+        {
+            "type": 3,
+            "posX": 143.0,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 173.07
+        },
+        {
+            "type": 4,
+            "posX": 147.0,
+            "posY": 0.0,
+            "distance": 3.0,
+            "beat": 174.07
+        },
+        {
+            "type": 5,
+            "posX": 150.5,
+            "posY": 1.0,
+            "distance": 3.0,
+            "beat": 175.07
+        }
+    ]
+}

@@ -39,11 +39,11 @@ public class Player : MonoBehaviour
 
         // 라인 이동 (P/K/M)
         if (Input.GetKeyDown(KeyCode.P))
-            transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
         else if (Input.GetKeyDown(KeyCode.K))
             transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         else if (Input.GetKeyDown(KeyCode.M))
-            transform.position = new Vector3(transform.position.x, -1.5f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -1f, transform.position.z);
 
         // RGB 공격
         if (Input.GetKeyDown(KeyCode.R) ||
