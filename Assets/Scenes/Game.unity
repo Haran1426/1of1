@@ -777,7 +777,7 @@ GameObject:
   - component: {fileID: 264945312}
   - component: {fileID: 264945311}
   m_Layer: 0
-  m_Name: Audio Source (2)
+  m_Name: Skill Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9707,7 +9707,7 @@ GameObject:
   - component: {fileID: 2118698477}
   - component: {fileID: 2118698476}
   m_Layer: 0
-  m_Name: Audio Source (1)
+  m_Name: Note hitting sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
