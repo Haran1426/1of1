@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    [Header("스킬 발사체 Prefab (BoxCollider2D + IsTrigger 필요)")]
+    [Header("스킬 발사체 프리팹")]
     [SerializeField] private GameObject skillPrefab;
 
     private const float cooldown = 30f;
