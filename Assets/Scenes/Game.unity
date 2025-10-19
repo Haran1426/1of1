@@ -9606,7 +9606,7 @@ GameObject:
   - component: {fileID: 2118698477}
   - component: {fileID: 2118698476}
   m_Layer: 0
-  m_Name: Note hitting sound
+  m_Name: Note Hitting Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
