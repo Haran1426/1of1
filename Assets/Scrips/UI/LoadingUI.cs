@@ -5,16 +5,63 @@ using UnityEngine.UI;
 
 public class LoadingUI : MonoBehaviour
 {
-    [Header("UI 참조")]
-    [SerializeField] private TextMeshProUGUI loadingText; // 퍼센트 표시용
-    [SerializeField] private Image loadingBar;            // 로딩바 이미지
+    [SerializeField] private TextMeshProUGUI loadingTitle;
+    [SerializeField] private TextMeshProUGUI loadingPercent;
+    [SerializeField] private Image loadingBar;
+    [SerializeField] private float duration = 1.5f;
 
-    [Header("설정")]
-    [SerializeField] private float duration = 1.5f;       // 전체 시간 (초)
+    private Coroutine barRoutine;
+    private Coroutine dotRoutine;
 
     private void OnEnable()
     {
-        StartCoroutine(PlayLoading());
+        InitializeUI();
+
+        barRoutine = StartCoroutine(PlayLoading());
+        dotRoutine = StartCoroutine(PlayDots());
+    }
+
+    private void OnDisable()
+    {
+        if (barRoutine != null)
+        {
+            StopCoroutine(barRoutine);
+            barRoutine = null;
+        }
+
+        if (dotRoutine != null)
+        {
+            StopCoroutine(dotRoutine);
+            dotRoutine = null;
+        }
+    }
+
+    private void InitializeUI()
+    {
+        if (loadingBar != null)
+            loadingBar.fillAmount = 0f;
+
+        if (loadingPercent != null)
+            loadingPercent.text = "1%";
+
+        if (loadingTitle != null)
+            loadingTitle.text = "Loading";
+    }
+
+    private IEnumerator PlayDots()
+    {
+        string baseText = "Loading";
+        int dot = 0;
+
+        while (true)
+        {
+            dot = (dot + 1) % 4;
+
+            if (loadingTitle != null)
+                loadingTitle.text = baseText + new string('.', dot);
+
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
     private IEnumerator PlayLoading()
@@ -25,22 +72,20 @@ public class LoadingUI : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-
-            // 퍼센트 (1% ~ 100%)
             int percent = Mathf.CeilToInt(Mathf.Lerp(1, 100, t));
 
-            if (loadingText != null)
-                loadingText.text = percent + "%";
+            if (loadingPercent != null)
+                loadingPercent.text = percent + "%";
 
             if (loadingBar != null)
                 loadingBar.fillAmount = t;
 
-            yield return null; // 매 프레임 갱신
+            yield return null;
         }
 
-        // 마지막 값 보정
-        if (loadingText != null)
-            loadingText.text = "100%";
+        if (loadingPercent != null)
+            loadingPercent.text = "100%";
+
         if (loadingBar != null)
             loadingBar.fillAmount = 1f;
     }

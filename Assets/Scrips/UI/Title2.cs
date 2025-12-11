@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class Title2 : MonoBehaviour
 {
-    // 버튼 이벤트 연결용
     public void LoadChoiceScene()
     {
         SceneFader.FadeToScene("Choice");

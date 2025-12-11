@@ -1,15 +1,16 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine;
 
-public class Option : MonoBehaviour
+public class OptionManager : MonoBehaviour
 {
     [Header("패널")]
-    public GameObject options;         
-    public GameObject loadingPanel;   
+    public GameObject options;
+    public GameObject loadingPanel;
+
     [Header("오디오")]
     public AudioSource bgmSource;
     public AudioSource[] sfxSources;
@@ -30,10 +31,16 @@ public class Option : MonoBehaviour
 
     [Header("로딩 설정")]
     public float fakeLoadingDuration = 2f;
-    public string nextSceneName = "Game"; 
+    public string nextSceneName = "Game";
+
+    private const string PREF_FPS = "TargetFPS";
+    private const string PREF_RESOLUTION = "ResolutionIndex";
 
     void Start()
     {
+        if (PlayerPrefs.HasKey(PREF_FPS))
+            targetFPS = PlayerPrefs.GetInt(PREF_FPS);
+
         ApplySettings();
 
         if (bgmSlider != null)
@@ -67,10 +74,15 @@ public class Option : MonoBehaviour
         {
             resolutionDropdown.ClearOptions();
             resolutionDropdown.AddOptions(new List<string> {
-                "1920x1080 (FHD)",
-                "2560x1440 (WQHD)"
+                "1920x1080 FHD",
+                "2560x1440 WQHD"
             });
-            resolutionDropdown.value = 0;
+
+            if (PlayerPrefs.HasKey(PREF_RESOLUTION))
+                resolutionDropdown.value = PlayerPrefs.GetInt(PREF_RESOLUTION);
+            else
+                resolutionDropdown.value = 0;
+
             resolutionDropdown.onValueChanged.AddListener(OnResolutionDropdownChanged);
         }
 
@@ -78,9 +90,6 @@ public class Option : MonoBehaviour
         if (loadingPanel != null) loadingPanel.SetActive(false);
     }
 
-    // ============================
-    // ✅ 게임 시작 (로딩 후 씬 이동)
-    // ============================
     public void OnStartButtonClicked()
     {
         StartCoroutine(LoadingAndChangeScene());
@@ -93,13 +102,13 @@ public class Option : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
-    // ============================
-    // ✅ 옵션 관련 메서드들
-    // ============================
     public void OpenOptions() => options?.SetActive(true);
     public void CloseOptions() => options?.SetActive(false);
 
-    public void SetBGMVolume(float volume) => bgmSource.volume = volume;
+    public void SetBGMVolume(float volume)
+    {
+        bgmSource.volume = volume;
+    }
 
     public void SetSFXVolume(float volume)
     {
@@ -117,19 +126,20 @@ public class Option : MonoBehaviour
     {
         targetFPS = Mathf.RoundToInt(value);
         Application.targetFrameRate = targetFPS;
+        PlayerPrefs.SetInt(PREF_FPS, targetFPS);
         UpdateFPSText();
     }
 
     private void UpdateFPSText()
     {
         if (fpsText != null)
-        {
-            fpsText.text = $"{targetFPS} FPS";
-        }
+            fpsText.text = targetFPS + " FPS";
     }
 
     public void OnResolutionDropdownChanged(int index)
     {
+        PlayerPrefs.SetInt(PREF_RESOLUTION, index);
+
         switch (index)
         {
             case 0: SetResolution(1920, 1080, true); break;
@@ -149,35 +159,5 @@ public class Option : MonoBehaviour
     {
         Application.targetFrameRate = targetFPS;
         Screen.SetResolution(screenWidth, screenHeight, fullScreen);
-    }
-}
-
-
-// --- Merged from GameSettingsManager.cs ---
-public class GameSettingsManager : MonoBehaviour
-{
-    public static GameSettingsManager Instance;
-
-    public int targetFPS = 60;
-    public bool useVSync = false;
-
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            ApplyFrameSettings();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void ApplyFrameSettings()
-    {
-        QualitySettings.vSyncCount = useVSync ? 1 : 0;
-        Application.targetFrameRate = useVSync ? -1 : targetFPS;
     }
 }
